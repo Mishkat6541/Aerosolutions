@@ -1,1285 +1,309 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIRO Solutions | Premium Fragrance Dispensers for Luxury Venues</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        /* ========================================
-           ROOT VARIABLES & RESET
-           ======================================== */
-        :root {
-            --primary-navy: #6b21a8;
-            --accent-blue: #a855f7;
-            --bg-white: #ffffff;
-            --bg-light-gray: #faf5ff;
-            --text-dark: #0f172a;
-            --text-gray: #64748b;
-            --border-color: #e9d5ff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: var(--bg-white);
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        /* ========================================
-           UTILITY CLASSES
-           ======================================== */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            background-color: var(--accent-blue);
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn:hover {
-            background-color: #9333ea;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--accent-blue);
-            color: var(--accent-blue);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--accent-blue);
-            color: white;
-        }
-
-        /* ========================================
-           NAVIGATION
-           ======================================== */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            padding: 15px 0;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-blue);
-        }
-
-        .nav-links .btn {
-            margin-left: 10px;
-        }
-
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-dark);
-            transition: 0.3s;
-        }
-
-        /* ========================================
-           HERO SECTION
-           ======================================== */
-        #hero {
-            margin-top: 80px;
-            padding: 100px 0;
-            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 700px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 25px;
-            color: var(--text-dark);
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.3rem;
-            color: var(--text-gray);
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .hero-metric {
-            background-color: white;
-            padding: 20px 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            display: inline-block;
-        }
-
-        .hero-metric strong {
-            font-size: 1.1rem;
-            color: var(--accent-blue);
-        }
-
-        /* ========================================
-           HOW IT WORKS SECTION
-           ======================================== */
-        #how-it-works {
-            background-color: var(--bg-white);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .step-card {
-            text-align: center;
-            padding: 40px 30px;
-            background-color: var(--bg-light-gray);
-            border-radius: 12px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .step-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .step-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--accent-blue);
-            margin-bottom: 20px;
-        }
-
-        .step-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .step-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .step-card p {
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        /* ========================================
-           PRODUCT SECTION
-           ======================================== */
-        #product {
-            background-color: var(--bg-light-gray);
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            margin-top: 40px;
-        }
-
-        .product-image img {
-            width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .product-details h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-
-        .product-details p {
-            color: var(--text-gray);
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
-
-        .product-features {
-            list-style: none;
-            margin-top: 30px;
-        }
-
-        .product-features li {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: start;
-            gap: 15px;
-        }
-
-        .product-features li:last-child {
-            border-bottom: none;
-        }
-
-        .product-features li::before {
-            content: "✓";
-            color: var(--accent-blue);
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-
-        /* ========================================
-           PARTNERSHIP MODEL SECTION
-           ======================================== */
-        #partnership {
-            background-color: var(--bg-white);
-        }
-
-        .partnership-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .partnership-card {
-            background-color: var(--bg-light-gray);
-            padding: 40px 30px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .partnership-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        .partnership-card p {
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        .partnership-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        /* ========================================
-           WHY AIRO SECTION
-           ======================================== */
-        #why-airo {
-            background-color: var(--primary-navy);
-            color: white;
-        }
-
-        #why-airo .section-header h2,
-        #why-airo .section-header p {
-            color: white;
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .why-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 35px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .why-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: white;
-        }
-
-        .why-card p {
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.7;
-        }
-
-        /* ========================================
-           ABOUT/FOUNDERS SECTION
-           ======================================== */
-        #about {
-            background-color: var(--bg-light-gray);
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content p {
-            color: var(--text-gray);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        /* ========================================
-           TESTIMONIALS SECTION
-           ======================================== */
-        #testimonials {
-            background-color: #f3e8ff;
-            padding: 80px 0;
-        }
-
-        .testimonials-carousel {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            padding: 40px 60px;
-        }
-
-        .testimonial {
-            display: none;
-            text-align: center;
-            animation: fadeIn 0.5s;
-        }
-
-        .testimonial.active {
-            display: block;
-        }
-
-        .testimonial-text {
-            font-size: 1.3rem;
-            font-style: italic;
-            color: var(--text-dark);
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 5px;
-        }
-
-        .testimonial-role {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: rgba(168, 85, 247, 0.3);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .carousel-dot.active {
-            background-color: var(--accent-blue);
-            width: 30px;
-            border-radius: 6px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ========================================
-           FAQ SECTION
-           ======================================== */
-        #faq {
-            background-color: var(--bg-white);
-        }
-
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background-color: var(--bg-light-gray);
-            margin-bottom: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 20px 25px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.3s;
-        }
-
-        .faq-question:hover {
-            background-color: #f3e8ff;
-        }
-
-        .faq-question::after {
-            content: "+";
-            font-size: 1.5rem;
-            color: var(--accent-blue);
-            transition: transform 0.3s;
-        }
-
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-
-        .faq-answer-content {
-            padding: 0 25px 20px;
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-
-        /* ========================================
-           CONTACT SECTION
-           ======================================== */
-        #contact {
-            background: linear-gradient(135deg, var(--primary-navy) 0%, #9333ea 100%);
-            color: white;
-            padding: 100px 0;
-        }
-
-        #contact .section-header h2,
-        #contact .section-header p {
-            color: white;
-        }
-
-        .contact-form {
-            max-width: 700px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 50px;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-message {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .form-message.success {
-            background-color: #d1fae5;
-            color: #065f46;
-            border: 1px solid #6ee7b7;
-        }
-
-        .form-message.error {
-            background-color: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #fca5a5;
-        }
-
-        .form-message.show {
-            display: block;
-        }
-
-        /* ========================================
-           FOOTER
-           ======================================== */
-        footer {
-            background-color: #0f172a;
-            color: white;
-            padding: 50px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 40px;
-        }
-
-        .footer-logo img {
-            height: 50px;
-            margin-bottom: 20px;
-        }
-
-        .footer-description {
-            color: #94a3b8;
-            line-height: 1.6;
-        }
-
-        .footer-section h4 {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
-        }
-
-        /* ========================================
-           RESPONSIVE DESIGN
-           ======================================== */
-        @media (max-width: 991px) {
-            .steps-grid,
-            .partnership-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .why-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .nav-links {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .contact-form {
-                padding: 30px 25px;
-            }
-        }
-
-        /* ========================================
-           ANIMATION UTILITIES
-           ======================================== */
-        .animate-text {
-            opacity: 0;
-        }
-
-        .animate-text.visible {
-            opacity: 1;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="container">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <a href="#hero">
-                        <img src="WhatsApp Image 2025-11-29 at 17.02.18_487c7d6b.jpg" alt="AIRO Solutions Logo">
-                    </a>
-                </div>
-                <div class="nav-links">
-                    <a href="#how-it-works">How It Works</a>
-                    <a href="#product">The Machine</a>
-                    <a href="#partnership">Process</a>
-                    <a href="#why-airo">Why AIRO</a>
-                    <a href="#about">About Us</a>
-                    <a href="#contact">Contact</a>
-                    <a href="#contact" class="btn">Book a Call</a>
-                </div>
-                <div class="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <section id="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="animate-text">Select. Pay. Spray. That Simple.</h1>
-                <p class="subtitle">Transform your venue with premium fragrance dispensers. Zero upfront costs, instant revenue share, and an unforgettable amenity for your guests.</p>
-                <div class="hero-cta">
-                    <a href="#product" class="btn">Discover The Machine</a>
-                    <a href="#contact" class="btn btn-secondary">Partner With Us</a>
-                </div>
-                <div class="hero-metric">
-                    <strong>£23,860</strong> average venue earnings over three years
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="how-it-works" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="animate-text">How It Works</h2>
-                <p>A premium fragrance experience in three simple steps</p>
-            </div>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <span class="step-icon">👆</span>
-                    <div class="step-number">01</div>
-                    <h3>Select</h3>
-                    <p>Browse our curated collection of designer fragrances on the sleek touchscreen interface. From YSL to Dior, choose your signature scent.</p>
-                </div>
-                <div class="step-card">
-                    <span class="step-icon">💳</span>
-                    <div class="step-number">02</div>
-                    <h3>Tap</h3>
-                    <p>Contactless payment via our integrated Nayax system. Quick, secure, and seamless - no cash, no hassle.</p>
-                </div>
-                <div class="step-card">
-                    <span class="step-icon">✨</span>
-                    <div class="step-number">03</div>
-                    <h3>Spray</h3>
-                    <p>Receive the perfect amount of premium fragrance. Step back into the night feeling refreshed and confident.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRODUCT SHOWCASE -->
-    <section id="product" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="animate-text">Discover The Machine</h2>
-                <p>State-of-the-art design meets luxury fragrance</p>
-            </div>
-            <div class="product-grid">
-                <div class="product-image">
-                    <img src="unnamed (4).jpg" alt="AIRO Solutions Premium Fragrance Dispenser">
-                </div>
-                <div class="product-details">
-                    <h3>Premium Engineering for Luxury Venues</h3>
-                    <p>The AIRO dispenser is designed specifically for high-end nightclubs, VIP lounges, and luxury restrooms. It's not just a machine - it's a statement piece that elevates your venue's experience.</p>
-                    <p>Every detail has been carefully crafted to ensure reliability, security, and an unparalleled user experience.</p>
-                    <ul class="product-features">
-                        <li><strong>Shatter-Proof Construction:</strong> Military-grade materials ensure durability in high-traffic environments</li>
-                        <li><strong>Integrated Security System:</strong> Built-in alarm with remote monitoring and instant alerts</li>
-                        <li><strong>Intuitive Touchscreen:</strong> High-definition display guides users through selection effortlessly</li>
-                        <li><strong>Designer Fragrances:</strong> Curated selection of 5+ premium brands including YSL, Dior, and more</li>
-                        <li><strong>LED Customization:</strong> 20+ color options to match your venue's aesthetic</li>
-                        <li><strong>Nayax Payment System:</strong> Industry-leading contactless payment technology</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PARTNERSHIP MODEL -->
-    <section id="partnership" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="animate-text">Our Partnership Process</h2>
-                <p>We handle everything so you can focus on running your venue</p>
-            </div>
-            <div class="partnership-grid">
-                <div class="partnership-card">
-                    <span class="partnership-icon">🔧</span>
-                    <h3>Seamless Installation</h3>
-                    <p>Professional setup with full safety inspection. We work around your schedule to minimize disruption and ensure perfect placement for maximum usage.</p>
-                </div>
-                <div class="partnership-card">
-                    <span class="partnership-icon">🛠️</span>
-                    <h3>Complete Maintenance</h3>
-                    <p>AIRO handles all refills, repairs, and monitoring. You never have to worry about inventory, technical issues, or maintenance schedules.</p>
-                </div>
-                <div class="partnership-card">
-                    <span class="partnership-icon">💰</span>
-                    <h3>Fair Profit Split</h3>
-                    <p>50/50 revenue share partnership structure. Your success is our success. No hidden fees, no upfront costs - just transparent profit sharing.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHY AIRO -->
-    <section id="why-airo" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="animate-text">Why AIRO Is Your Ideal Partner</h2>
-                <p>We're more than a vendor - we're your partner in success</p>
-            </div>
-            <div class="why-grid">
-                <div class="why-card">
-                    <h3>Complete Transparency</h3>
-                    <p>Monthly dashboards with real-time analytics. Track usage, revenue, popular fragrances, and peak times. Full visibility into every transaction with detailed reporting.</p>
-                </div>
-                <div class="why-card">
-                    <h3>Fair Partnership Structure</h3>
-                    <p>We believe in win-win relationships. Our 50/50 split means we're incentivized to maximize your revenue. Your success directly drives our success.</p>
-                </div>
-                <div class="why-card">
-                    <h3>Premium Quality</h3>
-                    <p>We stock only authentic designer fragrances from luxury brands your guests know and love. No cheap imitations - just the real deal.</p>
-                </div>
-                <div class="why-card">
-                    <h3>Unmatched Dedication</h3>
-                    <p>Under promise, over deliver. That's our philosophy. We're committed to providing exceptional service, rapid response times, and constant optimization to maximize your returns.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="animate-text">About AIRO Solutions</h2>
-                <p>Built by entrepreneurs who understand the hospitality industry</p>
-            </div>
-            <div class="about-content">
-                <p>AIRO Solutions was founded by experienced hospitality entrepreneurs who saw an opportunity to bring luxury amenities to high-end venues. With backgrounds in nightlife, technology, and customer experience, our team understands what it takes to create memorable guest experiences.</p>
-                <p>We're committed to a safety-first approach in everything we do - from product design and installation to ongoing maintenance and support. Our machines are fully insured, regularly inspected, and engineered to the highest standards.</p>
-                <p>Our vision is simple: make premium fragrances accessible in the moments when people need them most - without the hassle of carrying bottles or worrying about spills. We're turning restrooms into revenue centers and creating win-win partnerships with the best venues in the country.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="animate-text">What Venue Owners Say</h2>
-            </div>
-            <div class="testimonials-carousel">
-                <div class="testimonial active">
-                    <p class="testimonial-text">"The AIRO dispenser has been a fantastic addition to our VIP lounge. Guests love the convenience, and we love the extra revenue stream with zero effort on our part."</p>
-                    <p class="testimonial-author">Sarah Mitchell</p>
-                    <p class="testimonial-role">Owner, Velvet Nightclub</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"Installation was seamless and the monthly reports are incredibly detailed. It's amazing how something so simple can add real value to our venue."</p>
-                    <p class="testimonial-author">James Rodriguez</p>
-                    <p class="testimonial-role">General Manager, The Grand Hotel</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"Our guests are always impressed by the quality of fragrances available. It's become a talking point and adds to our luxury positioning."</p>
-                    <p class="testimonial-author">Emma Thompson</p>
-                    <p class="testimonial-role">Director, Prestige Lounge</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"The AIRO team is incredibly responsive. Any questions or issues are handled immediately. It's true partnership, not just a transaction."</p>
-                    <p class="testimonial-author">Michael Chen</p>
-                    <p class="testimonial-role">Owner, Eclipse Bar</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"We were skeptical at first, but the numbers speak for themselves. It's pure profit for us with absolutely no overhead or management required."</p>
-                    <p class="testimonial-author">Lisa Anderson</p>
-                    <p class="testimonial-role">Operations Manager, Luxe Events</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"The machine looks sleek and modern, fitting perfectly with our high-end aesthetic. It's functional art that also generates revenue."</p>
-                    <p class="testimonial-author">David Williams</p>
-                    <p class="testimonial-role">Owner, Metropolitan Club</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"AIRO delivers on their promises. The maintenance is handled perfectly, the dashboards are clear, and our guests genuinely appreciate the service."</p>
-                    <p class="testimonial-author">Rachel Green</p>
-                    <p class="testimonial-role">Manager, Royale Lounge</p>
-                </div>
-                <div class="carousel-dots">
-                    <span class="carousel-dot active" data-index="0"></span>
-                    <span class="carousel-dot" data-index="1"></span>
-                    <span class="carousel-dot" data-index="2"></span>
-                    <span class="carousel-dot" data-index="3"></span>
-                    <span class="carousel-dot" data-index="4"></span>
-                    <span class="carousel-dot" data-index="5"></span>
-                    <span class="carousel-dot" data-index="6"></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section id="faq" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="animate-text">Frequently Asked Questions</h2>
-                <p>Everything you need to know about partnering with AIRO</p>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">What are the operating costs for the machine?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            The only operating cost is electricity, which is minimal (approximately £2-3 per month). AIRO handles all fragrance refills, maintenance, repairs, and monitoring at no cost to you. There are no upfront fees, monthly fees, or hidden charges.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What security features does the machine have?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Every AIRO dispenser includes an integrated alarm system with remote monitoring. If tampering is detected, we receive instant alerts and can take immediate action. The construction is shatter-proof and designed to withstand high-traffic environments. All units are also fully insured.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">How much fragrance does each spray dispense?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Our default setting dispenses 0.13ml per spray, which is the perfect amount for a quality application without waste. This ensures optimal fragrance experience while maximizing value for both the user and your venue. Settings can be adjusted based on specific needs.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Can we adjust pricing or customize the fragrances?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Absolutely! We work with each venue to determine optimal pricing based on your clientele and market. Fragrance selection is also customizable - we'll curate a collection that aligns with your venue's brand and guest preferences. LED colors can also be customized to match your aesthetic.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Who is responsible for repairs and liability?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            AIRO handles all maintenance, repairs, and technical issues. If something goes wrong, we fix it - at no cost to you. All machines are fully insured and we carry comprehensive liability coverage. Your venue has zero risk or responsibility for equipment issues.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">How are fragrances selected and replaced?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            We monitor usage data to track which fragrances are most popular and ensure optimal inventory. Refills are handled proactively based on usage patterns - you'll never run out. We work with you to adjust the fragrance lineup based on seasonal trends and customer feedback.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Where should the machine be placed for best results?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Ideal placements include restroom corridors, VIP lounge areas, or high-traffic areas near exits. We provide consultation on optimal placement based on your venue layout to maximize visibility and usage. The machine requires a standard power outlet and works well in most restroom or corridor environments.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Is the machine covered by insurance?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Yes, all AIRO dispensers are fully insured for theft, damage, and liability. We carry comprehensive coverage so your venue is completely protected. In the unlikely event of any incident, AIRO handles all claims and replacements.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="animate-text">Ready to Partner With AIRO?</h2>
-                <p>Join the venues already earning extra revenue with zero effort</p>
-            </div>
-            <div class="contact-form">
-                <div class="form-message" id="formMessage"></div>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="venue">Venue Name *</label>
-                        <input type="text" id="venue" name="venue" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Tell us about your venue</label>
-                        <textarea id="message" name="message" placeholder="Venue type, location, estimated foot traffic, etc."></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem;">Get Started - Zero Upfront Costs</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">
-                        <img src="WhatsApp Image 2025-11-29 at 17.02.18_487c7d6b.jpg" alt="AIRO Solutions">
-                    </div>
-                    <p class="footer-description">Premium fragrance dispensers for luxury venues. Transform your restrooms into revenue centers with zero upfront investment.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#product">The Machine</a></li>
-                        <li><a href="#partnership">Partnership</a></li>
-                        <li><a href="#why-airo">Why AIRO</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AIRO Solutions. All rights reserved. | Designed for Premium Venues.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- GSAP LIBRARIES -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- CUSTOM JAVASCRIPT -->
-    <script>
-        // ========================================
-        // SMOOTH SCROLL NAVIGATION
-        // ========================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const navHeight = document.querySelector('nav').offsetHeight;
-                    const targetPosition = target.offsetTop - navHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // ========================================
-        // GSAP SCROLL ANIMATIONS
-        // ========================================
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Animate text elements on scroll
-        document.querySelectorAll('.animate-text').forEach(element => {
-            const text = element.textContent;
-            const words = text.split(' ');
-            element.innerHTML = words.map(word => `<span style="display: inline-block; opacity: 0;">${word}</span>`).join(' ');
-
-            const wordElements = element.querySelectorAll('span');
-
-            gsap.to(wordElements, {
-                opacity: 1,
-                duration: 0.5,
-                stagger: 0.1,
-                scrollTrigger: {
-                    trigger: element,
-                    start: window.innerWidth <= 767 ? 'top 85%' : 'top 70%',
-                    toggleActions: 'play none none none'
-                }
-            });
-        });
-
-        // ========================================
-        // TESTIMONIAL CAROUSEL
-        // ========================================
-        let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('.testimonial');
-        const dots = document.querySelectorAll('.carousel-dot');
-
-        function showTestimonial(index) {
-            testimonials.forEach(t => t.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
-
-            testimonials[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentTestimonial = index;
-        }
-
-        // Auto-rotate testimonials
-        setInterval(() => {
-            const next = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(next);
-        }, 5000);
-
-        // Dot click handlers
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const index = parseInt(dot.getAttribute('data-index'));
-                showTestimonial(index);
-            });
-        });
-
-        // ========================================
-        // FAQ ACCORDION
-        // ========================================
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                const wasActive = faqItem.classList.contains('active');
-
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-
-                // Open clicked item if it wasn't active
-                if (!wasActive) {
-                    faqItem.classList.add('active');
-                }
-            });
-        });
-
-        // ========================================
-        // CONTACT FORM VALIDATION
-        // ========================================
-        const contactForm = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Get form values
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const venue = document.getElementById('venue').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            // Basic validation
-            if (!name || !email || !phone || !venue) {
-                showMessage('Please fill in all required fields.', 'error');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showMessage('Please enter a valid email address.', 'error');
-                return;
-            }
-
-            // Success message (in production, this would send to backend)
-            showMessage('Thank you for your interest! We\'ll be in touch within 24 hours to discuss partnership opportunities.', 'success');
-
-            // Reset form
-            contactForm.reset();
-
-            // Scroll to message
-            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        });
-
-        function showMessage(message, type) {
-            formMessage.textContent = message;
-            formMessage.className = 'form-message ' + type + ' show';
-
-            if (type === 'success') {
-                setTimeout(() => {
-                    formMessage.classList.remove('show');
-                }, 10000);
-            }
-        }
-
-        // ========================================
-        // MOBILE MENU TOGGLE (Optional Enhancement)
-        // ========================================
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-        }
-    </script>
-
-</body>
-</html>
+<!DOCTYPE html><!-- Last Published: Thu Dec 19 2024 14:47:32 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="www.airo.com" data-wf-page="66ae64b3b5c7378eb6d231c5" data-wf-site="66ae64b3b5c7378eb6d23172" lang="en"><head><meta charset="utf-8"/><title>Boost your revenue with a fragrance vending machine | AIRO Solutions</title><meta content="Our fragrance vending machine is completely cost-free for you. We handle everything, so you can generate income without any upfront or maintenance expenses." name="description"/><meta content="Boost your revenue with a fragrance vending machine | AIRO Solutions" property="og:title"/><meta content="Our fragrance vending machine is completely cost-free for you. We handle everything, so you can generate income without any upfront or maintenance expenses." property="og:description"/><meta content="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7995c02fecdf8d0292151_airo-opengraph.webp" property="og:image"/><meta content="Boost your revenue with a fragrance vending machine | AIRO Solutions" property="twitter:title"/><meta content="Our fragrance vending machine is completely cost-free for you. We handle everything, so you can generate income without any upfront or maintenance expenses." property="twitter:description"/><meta content="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7995c02fecdf8d0292151_airo-opengraph.webp" property="twitter:image"/><meta property="og:type" content="website"/><meta content="summary_large_image" name="twitter:card"/><meta content="width=device-width, initial-scale=1" name="viewport"/><link href="sprayzie.css" rel="stylesheet" type="text/css"/><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b6448fd89b99f549adc917_airo-favicon.png" rel="shortcut icon" type="image/x-icon"/><link href="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b6452930c116dc06bbbfdd_airo-webclip.png" rel="apple-touch-icon"/><link href="https://www.airo.com" rel="canonical"/><!-- Keep this css code to improve the font quality-->
+<style>
+  * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -o-font-smoothing: antialiased;
+}
+</style></head><body><div class="page-wrapper"><div class="global-styles w-embed"><style>
+
+/* Set color style to inherit */
+.inherit-color * {
+    color: inherit;
+}
+
+/* Focus state style for keyboard navigation for the focusable elements */
+*[tabindex]:focus-visible,
+  input[type="file"]:focus-visible {
+   outline: 0.125rem solid #4d65ff;
+   outline-offset: 0.125rem;
+}
+
+/* Get rid of top margin on first element in any rich text element */
+.w-richtext > :not(div):first-child, .w-richtext > div:first-child > :first-child {
+  margin-top: 0 !important;
+}
+
+/* Get rid of bottom margin on last element in any rich text element */
+.w-richtext>:last-child, .w-richtext ol li:last-child, .w-richtext ul li:last-child {
+	margin-bottom: 0 !important;
+}
+
+/* Prevent all click and hover interaction with an element */
+.pointer-events-off {
+	pointer-events: none;
+}
+
+/* Enables all click and hover interaction with an element */
+.pointer-events-on {
+  pointer-events: auto;
+}
+
+/* Create a class of .div-square which maintains a 1:1 dimension of a div */
+.div-square::after {
+	content: "";
+	display: block;
+	padding-bottom: 100%;
+}
+
+/* Make sure containers never lose their center alignment */
+.container-medium,.container-small, .container-large {
+	margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+/* 
+Make the following elements inherit typography styles from the parent and not have hardcoded values. 
+Important: You will not be able to style for example "All Links" in Designer with this CSS applied.
+Uncomment this CSS to use it in the project. Leave this message for future hand-off.
+*/
+/*
+a,
+.w-input,
+.w-select,
+.w-tab-link,
+.w-nav-link,
+.w-dropdown-btn,
+.w-dropdown-toggle,
+.w-dropdown-link {
+  color: inherit;
+  text-decoration: inherit;
+  font-size: inherit;
+}
+*/
+
+/* Apply "..." after 3 lines of text */
+.text-style-3lines {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+/* Apply "..." after 2 lines of text */
+.text-style-2lines {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+/* Adds inline flex display */
+.display-inlineflex {
+  display: inline-flex;
+}
+
+/* These classes are never overwritten */
+.hide {
+  display: none !important;
+}
+
+@media screen and (max-width: 991px) {
+    .hide, .hide-tablet {
+        display: none !important;
+    }
+}
+  @media screen and (max-width: 767px) {
+    .hide-mobile-landscape{
+      display: none !important;
+    }
+}
+  @media screen and (max-width: 479px) {
+    .hide-mobile{
+      display: none !important;
+    }
+}
+ 
+.margin-0 {
+  margin: 0rem !important;
+}
+  
+.padding-0 {
+  padding: 0rem !important;
+}
+
+.spacing-clean {
+padding: 0rem !important;
+margin: 0rem !important;
+}
+
+.margin-top {
+  margin-right: 0rem !important;
+  margin-bottom: 0rem !important;
+  margin-left: 0rem !important;
+}
+
+.padding-top {
+  padding-right: 0rem !important;
+  padding-bottom: 0rem !important;
+  padding-left: 0rem !important;
+}
+  
+.margin-right {
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
+  margin-left: 0rem !important;
+}
+
+.padding-right {
+  padding-top: 0rem !important;
+  padding-bottom: 0rem !important;
+  padding-left: 0rem !important;
+}
+
+.margin-bottom {
+  margin-top: 0rem !important;
+  margin-right: 0rem !important;
+  margin-left: 0rem !important;
+}
+
+.padding-bottom {
+  padding-top: 0rem !important;
+  padding-right: 0rem !important;
+  padding-left: 0rem !important;
+}
+
+.margin-left {
+  margin-top: 0rem !important;
+  margin-right: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+  
+.padding-left {
+  padding-top: 0rem !important;
+  padding-right: 0rem !important;
+  padding-bottom: 0rem !important;
+}
+  
+.margin-horizontal {
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+
+.padding-horizontal {
+  padding-top: 0rem !important;
+  padding-bottom: 0rem !important;
+}
+
+.margin-vertical {
+  margin-right: 0rem !important;
+  margin-left: 0rem !important;
+}
+  
+.padding-vertical {
+  padding-right: 0rem !important;
+  padding-left: 0rem !important;
+}
+
+/* Apply "..." at 100% width */
+.truncate-width { 
+		width: 100%; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+/* Removes native scrollbar */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none; 
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+</style></div><main class="main-wrapper"><div class="hero-wrapper"><div data-animation="default" class="navbar1_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="f0b90740-e95f-a446-b5a2-74ad5447459b" role="banner" data-duration="400"><div class="navbar1_container"><a href="/" aria-current="page" class="navbar1_logo-link w-nav-brand w--current"><img src="unnamed (25) (1) (1) (1) (1).png" loading="lazy" alt="AIRO Solutions logo in black"/></a><nav role="navigation" class="navbar1_menu is-page-height-tablet w-nav-menu"><a href="#how-it-works" class="navbar1_link w-nav-link">How it works</a><a href="#the-machine" class="navbar1_link w-nav-link">Discover the machine</a><a href="#process" class="navbar1_link w-nav-link">Process</a><a href="#why-partner" class="navbar1_link w-nav-link">Why AIRO Solutions</a><a href="#about" class="navbar1_link w-nav-link">About us</a><a href="#contact" class="navbar1_link w-nav-link">Contact</a></nav><div class="navbar1_menu-button w-nav-button"><div class="menu-icon1"><div class="menu-icon1_line-top"></div><div class="menu-icon1_line-middle"><div class="menu-icon_line-middle-inner"></div></div><div class="menu-icon1_line-bottom"></div></div></div></div></div><header class="section_header1"><div class="padding-global"><div class="container-large"><div class="padding-section-large hero"><div class="w-layout-grid header1_component"><div class="header1_content"><div class="margin-bottom margin-xsmall"><h1 data-w-id="3ba366c8-dfe3-399c-0d98-a3b4929abf13" style="opacity:0" class="heading-style-h1">Instant Freshness at the touch of a button, just tap,pay and spray</h1></div><p data-w-id="3ba366c8-dfe3-399c-0d98-a3b4929abf15" style="opacity:0" class="text-size-medium">Elevate your nightclub or luxury venue with AIRO's premium fragrance dispensers. Generate passive revenue with zero upfront costs while offering guests an exclusive amenity. We handle everything-installation, maintenance, designer fragrances, and Nayax contactless payments-you simply collect 50% of the profits monthly.</p><div class="margin-top margin-medium"><div data-w-id="3ba366c8-dfe3-399c-0d98-a3b4929abf18" style="opacity:0" class="button-group"><a href="#the-machine" class="button is-secondary w-button">Discover the machine</a><a href="https://calendly.com/michael-airo/30min" target="_blank" class="button w-button">Talk to us</a></div></div><p data-w-id="0fbe4a74-24a3-c6a4-9f70-5feec605ef04" style="opacity:0" class="small-text">Top venues earn £200-800 per month in passive revenue with AIRO dispensers</p></div><div id="w-node-f75e81e4-5999-84a3-9f6b-24ac268f5390-b6d231c5" class="hero-image-wrapper"><img src="unnamed (26).png" loading="eager" sizes="(max-width: 479px) 90vw, (max-width: 767px) 72vw, (max-width: 991px) 28vw, 37vw" srcset="unnamed (26).png" alt="" class="header1_image"/></div></div></div></div></div></header><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b35fa39d15d376ebf25f51_spray-icon.svg" loading="lazy" alt="airo logo illustration " class="hero-spray-icon top-left"/><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b35fa39d15d376ebf25f51_spray-icon.svg" loading="lazy" alt="airo logo illustration " class="hero-spray-icon"/><section data-w-id="dee784d9-800e-8623-f067-0f5656770c76" style="opacity:0" class="section_testimonial21"><div class="testimonial21_component"><div class="testimonial21_loop-trigger"><div class="testimonial21_card"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb1abc003c490abd881d_testimonial-1.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb1abc003c490abd881d_testimonial-1-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb1abc003c490abd881d_testimonial-1-p-800.webp 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb1abc003c490abd881d_testimonial-1.webp 853w" alt="A picture of a smiling man in a group of friends" class="image-testimonial"/><div>&quot;Such a brilliant idea!&quot;quot;We've added £8,000 in pure profit over the past year. Zero effort on our part - AIRO handles everything.&quot;Such a brilliant idea!&quot;quot;</div></div><div class="testimonial21_card green"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb28300d381ca5e8ae69_testimonial-2.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb28300d381ca5e8ae69_testimonial-2-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb28300d381ca5e8ae69_testimonial-2-p-800.webp 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb28300d381ca5e8ae69_testimonial-2.webp 853w" alt="A picture of a smiling woman on a white background" class="image-testimonial"/><div>&quot;It’s a fantastic addition to any venue, making it stand out from the rest!&quot;</div></div><div class="testimonial21_card orange"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb31d2e9bba4ac05d5f7_testimonial-3.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb31d2e9bba4ac05d5f7_testimonial-3-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb31d2e9bba4ac05d5f7_testimonial-3.webp 853w" alt="A picture of a smiling man on yellow background" class="image-testimonial"/><div>&quot;It&#x27;s a must-have for any venue!&quot;quot;The monthly checks arrive like clockwork. Best passive revenue stream we've ever added. Completely hands-off.&quot;It&#x27;s a must-have for any venue!&quot;quot;</div></div><div class="testimonial21_card purple"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb402e3e75a374a92c2c_testimonial-4.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb402e3e75a374a92c2c_testimonial-4-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb402e3e75a374a92c2c_testimonial-4.webp 853w" alt="A picture of a smiling woman" class="image-testimonial"/><div>&quot;I was impressed by the quality of the fragrance from the vending machine&quot;quot;Saved my night! Spilled a drink on myself and was able to freshen up before heading back to the dance floor. Genius idea!&quot;I was impressed by the quality of the fragrance from the vending machine&quot;quot;</div></div><div class="testimonial21_card"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb4c8e7937d52d841698_testimonial-5.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb4c8e7937d52d841698_testimonial-5-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb4c8e7937d52d841698_testimonial-5-p-800.webp 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb4c8e7937d52d841698_testimonial-5.webp 853w" alt="A picture of a smiling girl in a group of friends" class="image-testimonial"/><div>&quot;I love how easy it is to use&quot;quot;So convenient! Tap, pick your scent, and you're good to go. The YSL option is my go-to before a big night.&quot;I love how easy it is to use&quot;quot;</div></div><div class="testimonial21_card green"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb54b2ceab6a1cca2872_testimonial-6.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb54b2ceab6a1cca2872_testimonial-6-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb54b2ceab6a1cca2872_testimonial-6-p-800.webp 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb54b2ceab6a1cca2872_testimonial-6.webp 853w" alt="A picture of a smiling girl " class="image-testimonial"/><div>&quot;The selection of perfumes is great!&quot;quot;AIRO's team was incredibly professional. Installation was seamless, and they trained our staff perfectly. Highly recommend.&quot;The selection of perfumes is great!&quot;quot;</div></div><div class="testimonial21_card orange last"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb6528b4fd5acc5fcf42_testimonial-7.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb6528b4fd5acc5fcf42_testimonial-7-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb6528b4fd5acc5fcf42_testimonial-7-p-800.webp 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb6528b4fd5acc5fcf42_testimonial-7.webp 853w" alt="A picture of a smiling man in glasses" class="image-testimonial"/><div>&quot;The fragrance machine is a lifesaver!&quot;quot;Finally, a premium amenity that actually makes us money! Our VIP clients appreciate the luxury touch.&quot;The fragrance machine is a lifesaver!&quot;quot;</div></div></div><div class="testimonial21_loop-trigger"><div class="empty-space"></div><div class="testimonial21_card"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb1abc003c490abd881d_testimonial-1.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb1abc003c490abd881d_testimonial-1-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb1abc003c490abd881d_testimonial-1-p-800.webp 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb1abc003c490abd881d_testimonial-1.webp 853w" alt="A picture of a smiling man in a group of friends" class="image-testimonial"/><div>&quot;Such a brilliant idea!&quot;quot;We've added £8,000 in pure profit over the past year. Zero effort on our part - AIRO handles everything.&quot;Such a brilliant idea!&quot;quot;</div></div><div class="testimonial21_card green"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb28300d381ca5e8ae69_testimonial-2.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb28300d381ca5e8ae69_testimonial-2-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb28300d381ca5e8ae69_testimonial-2-p-800.webp 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb28300d381ca5e8ae69_testimonial-2.webp 853w" alt="A picture of a smiling woman on a white background" class="image-testimonial"/><div>&quot;It’s a fantastic addition to any venue, making it stand out from the rest!&quot;</div></div><div class="testimonial21_card orange"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb31d2e9bba4ac05d5f7_testimonial-3.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb31d2e9bba4ac05d5f7_testimonial-3-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb31d2e9bba4ac05d5f7_testimonial-3.webp 853w" alt="A picture of a smiling man on yellow background" class="image-testimonial"/><div>&quot;It&#x27;s a must-have for any venue!&quot;quot;The monthly checks arrive like clockwork. Best passive revenue stream we've ever added. Completely hands-off.&quot;It&#x27;s a must-have for any venue!&quot;quot;</div></div><div class="testimonial21_card purple"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb402e3e75a374a92c2c_testimonial-4.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb402e3e75a374a92c2c_testimonial-4-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb402e3e75a374a92c2c_testimonial-4.webp 853w" alt="A picture of a smiling woman" class="image-testimonial"/><div>&quot;I was impressed by the quality of the fragrance from the vending machine&quot;quot;Saved my night! Spilled a drink on myself and was able to freshen up before heading back to the dance floor. Genius idea!&quot;I was impressed by the quality of the fragrance from the vending machine&quot;quot;</div></div><div class="testimonial21_card"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb4c8e7937d52d841698_testimonial-5.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb4c8e7937d52d841698_testimonial-5-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb4c8e7937d52d841698_testimonial-5-p-800.webp 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb4c8e7937d52d841698_testimonial-5.webp 853w" alt="A picture of a smiling girl in a group of friends" class="image-testimonial"/><div>&quot;I love how easy it is to use&quot;quot;So convenient! Tap, pick your scent, and you're good to go. The YSL option is my go-to before a big night.&quot;I love how easy it is to use&quot;quot;</div></div><div class="testimonial21_card green"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb54b2ceab6a1cca2872_testimonial-6.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb54b2ceab6a1cca2872_testimonial-6-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb54b2ceab6a1cca2872_testimonial-6-p-800.webp 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb54b2ceab6a1cca2872_testimonial-6.webp 853w" alt="A picture of a smiling girl " class="image-testimonial"/><div>&quot;The selection of perfumes is great!&quot;quot;AIRO's team was incredibly professional. Installation was seamless, and they trained our staff perfectly. Highly recommend.&quot;The selection of perfumes is great!&quot;quot;</div></div><div class="testimonial21_card orange last"><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb6528b4fd5acc5fcf42_testimonial-7.webp" loading="lazy" sizes="(max-width: 767px) 32px, 48px" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb6528b4fd5acc5fcf42_testimonial-7-p-500.webp 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb6528b4fd5acc5fcf42_testimonial-7-p-800.webp 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b7cb6528b4fd5acc5fcf42_testimonial-7.webp 853w" alt="A picture of a smiling man in glasses" class="image-testimonial"/><div>&quot;The fragrance machine is a lifesaver!&quot;quot;Finally, a premium amenity that actually makes us money! Our VIP clients appreciate the luxury touch.&quot;The fragrance machine is a lifesaver!&quot;quot;</div></div></div></div></section></div><section id="how-it-works" class="section_layout408"><div class="how-it-work-gradient"></div><div class="how-it-work-gradient second"></div><div class="padding-global relative-2"><div class="container-large"><div class="padding-section-large"><div class="margin-bottom margin-xlarge"><div class="text-align-center"><div class="max-width-large align-center"><div class="margin-bottom margin-small"><h2 data-w-id="4423a490-eda5-1603-5e0b-ff194eb13406" style="opacity:0" class="heading-style-h3">Simply AIRO Solutions: tap, select and <span class="text-gradient-primary">be sprayed with your favourite fragrance</span></h2></div><p data-w-id="4423a490-eda5-1603-5e0b-ff194eb13408" style="opacity:0" class="text-size-medium">Our premium fragrance dispensers are creating buzz across London's most exclusive venues. Guests love the convenience of accessing designer fragrances, and venue owners love the effortless revenue. It's a win-win that keeps customers coming back. </p></div></div></div><div class="swiper"><div class="swiper-wrapper"><div class="swiper-slide"><div class="margin-bottom margin-xsmall"><div class="icon-1x1-medium blue w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-hand-index-thumb" viewBox="0 0 16 16">
+  <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 0 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 1 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.118a.5.5 0 0 1-.447-.276l-1.232-2.465-2.512-4.185a.517.517 0 0 1 .809-.631l2.41 2.41A.5.5 0 0 0 6 9.5V1.75A.75.75 0 0 1 6.75 1M8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v6.543L3.443 6.736A1.517 1.517 0 0 0 1.07 8.588l2.491 4.153 1.215 2.43A1.5 1.5 0 0 0 6.118 16h6.302a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5 5 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.6 2.6 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046zm2.094 2.025"/>
+</svg></div></div><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h4">1. Select</h3></div><p>Browse our curated selection of 5-8 premium designer fragrances including YSL, Dior, Tom Ford, and Armani. Our intuitive touchscreen interface makes choosing your signature scent effortless.</p></div><div class="swiper-slide"><div class="margin-bottom margin-xsmall"><div class="icon-1x1-medium purple w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+  <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+</svg></div></div><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h4">2. Tap</h3></div><p>Simply tap your card or phone on our Nayax contactless payment system. Fast, secure, and seamless-the entire transaction takes just seconds. No cash, no hassle.</p></div><div class="swiper-slide"><div class="margin-bottom margin-xsmall"><div class="icon-1x1-medium orange smaller-margin w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 17 17" fill="none">
+<path d="M5.329 9.15723C5.46161 9.15723 5.58879 9.10455 5.68255 9.01078C5.77632 8.91701 5.829 8.78983 5.829 8.65723C5.829 8.52462 5.77632 8.39744 5.68255 8.30367C5.58879 8.20991 5.46161 8.15723 5.329 8.15723H3.5C3.36739 8.15723 3.24021 8.20991 3.14645 8.30367C3.05268 8.39744 3 8.52462 3 8.65723C3 8.78983 3.05268 8.91701 3.14645 9.01078C3.24021 9.10455 3.36739 9.15723 3.5 9.15723H5.329Z" fill="currentColor"/>
+<path d="M10.6559 5.94965C10.5622 6.04342 10.5095 6.1706 10.5095 6.3032C10.5095 6.43581 10.5622 6.56299 10.656 6.65676C10.7497 6.75053 10.8769 6.80321 11.0095 6.80321C11.1421 6.80321 11.2693 6.75053 11.3631 6.65676L12.6564 5.36346C12.7501 5.26969 12.8028 5.14252 12.8028 5.00991C12.8028 4.8773 12.7501 4.75012 12.6564 4.65636C12.5626 4.56259 12.4354 4.50991 12.3028 4.50991C12.1702 4.50991 12.043 4.56259 11.9492 4.65635L10.6559 5.94965ZM13.8132 9.15638C13.9443 9.1541 14.0692 9.10043 14.1611 9.00692C14.253 8.91342 14.3045 8.78756 14.3045 8.65646C14.3045 8.52535 14.253 8.3995 14.1611 8.30599C14.0692 8.21248 13.9443 8.15881 13.8132 8.15653L11.9846 8.15653C11.9182 8.15538 11.8523 8.16746 11.7906 8.19206C11.7289 8.21667 11.6728 8.25331 11.6254 8.29984C11.5781 8.34638 11.5405 8.40188 11.5148 8.46311C11.4891 8.52434 11.4759 8.59006 11.4759 8.65646C11.4759 8.72285 11.4891 8.78858 11.5148 8.8498C11.5405 8.91103 11.5781 8.96653 11.6254 9.01307C11.6728 9.05961 11.7289 9.09625 11.7906 9.12085C11.8523 9.14546 11.9182 9.15753 11.9846 9.15638L13.8132 9.15638ZM8.15633 5.32811C8.15517 5.39449 8.16725 5.46043 8.19186 5.5221C8.21646 5.58376 8.2531 5.63991 8.29964 5.68726C8.34617 5.73461 8.40168 5.77222 8.4629 5.7979C8.52413 5.82357 8.58986 5.83679 8.65625 5.83679C8.72264 5.83679 8.78837 5.82357 8.8496 5.7979C8.91082 5.77222 8.96633 5.73461 9.01286 5.68726C9.0594 5.63991 9.09604 5.58376 9.12065 5.5221C9.14525 5.46043 9.15733 5.39449 9.15617 5.3281L9.15617 3.49953C9.1539 3.36844 9.10022 3.2435 9.00672 3.1516C8.91321 3.05971 8.78735 3.00821 8.65625 3.00821C8.52515 3.00821 8.39929 3.05971 8.30578 3.1516C8.21228 3.2435 8.1586 3.36844 8.15633 3.49953L8.15633 5.32811ZM5.94945 6.65676C6.04321 6.75053 6.17039 6.80321 6.303 6.80321C6.43561 6.80321 6.56278 6.75053 6.65655 6.65676C6.75032 6.56299 6.803 6.43581 6.803 6.30321C6.803 6.1706 6.75032 6.04342 6.65655 5.94965L5.36325 4.65635C5.26949 4.56259 5.14231 4.50991 5.0097 4.50991C4.87709 4.50991 4.74992 4.56258 4.65615 4.65635C4.56238 4.75012 4.5097 4.8773 4.5097 5.00991C4.5097 5.14251 4.56238 5.26969 4.65615 5.36346L5.94945 6.65676ZM11.9492 12.6566C12.043 12.7503 12.1702 12.803 12.3028 12.803C12.4354 12.803 12.5626 12.7503 12.6564 12.6566C12.7501 12.5628 12.8028 12.4356 12.8028 12.303C12.8028 12.1704 12.7501 12.0432 12.6564 11.9495L11.3631 10.6562C11.2693 10.5624 11.1421 10.5097 11.0095 10.5097C10.8769 10.5097 10.7497 10.5624 10.6559 10.6562C10.5622 10.7499 10.5095 10.8771 10.5095 11.0097C10.5095 11.1423 10.5622 11.2695 10.6559 11.3633L11.9492 12.6566ZM8.15633 13.8134C8.15517 13.8798 8.16725 13.9457 8.19186 14.0074C8.21646 14.069 8.2531 14.1252 8.29964 14.1725C8.34618 14.2199 8.40168 14.2575 8.4629 14.2832C8.52413 14.3089 8.58986 14.3221 8.65625 14.3221C8.72264 14.3221 8.78837 14.3089 8.8496 14.2832C8.91082 14.2575 8.96633 14.2199 9.01286 14.1725C9.0594 14.1252 9.09604 14.069 9.12065 14.0074C9.14525 13.9457 9.15733 13.8798 9.15618 13.8134L9.15617 11.9848C9.15733 11.9184 9.14525 11.8525 9.12065 11.7908C9.09604 11.7292 9.0594 11.673 9.01286 11.6257C8.96633 11.5783 8.91082 11.5407 8.8496 11.515C8.78837 11.4893 8.72264 11.4761 8.65625 11.4761C8.58986 11.4761 8.52413 11.4893 8.4629 11.515C8.40168 11.5407 8.34618 11.5783 8.29964 11.6257C8.2531 11.673 8.21646 11.7292 8.19186 11.7908C8.16725 11.8525 8.15517 11.9184 8.15633 11.9848L8.15633 13.8134ZM4.65615 11.9495C4.56238 12.0432 4.5097 12.1704 4.5097 12.303C4.5097 12.4356 4.56238 12.5628 4.65615 12.6566C4.74992 12.7503 4.87709 12.803 5.0097 12.803C5.14231 12.803 5.26949 12.7503 5.36326 12.6566L6.65655 11.3633C6.75032 11.2695 6.803 11.1423 6.803 11.0097C6.803 10.8771 6.75032 10.7499 6.65655 10.6562C6.56279 10.5624 6.43561 10.5097 6.303 10.5097C6.17039 10.5097 6.04321 10.5624 5.94945 10.6562L4.65615 11.9495ZM9.57125 9.65631C9.70358 9.6561 9.83044 9.60344 9.92402 9.50986C10.0176 9.41628 10.0703 9.28943 10.0705 9.15709V8.15583C10.0704 8.02324 10.0178 7.8961 9.92402 7.80235C9.83027 7.7086 9.70312 7.65592 9.57054 7.6559L7.74125 7.65661C7.60867 7.65663 7.48153 7.7093 7.38778 7.80305C7.29403 7.8968 7.24135 8.02395 7.24133 8.15653V9.1578C7.24135 9.29038 7.29403 9.41752 7.38778 9.51127C7.48153 9.60502 7.60867 9.6577 7.74125 9.65772H9.56983L9.57125 9.65631Z" fill="currentColor"/>
+</svg></div></div><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h4">3. Spray</h3></div><p>Receive the perfect dose of your chosen fragrance-carefully calibrated for optimal coverage. Walk away feeling confident and refreshed, ready to enjoy your night.</p></div></div></div></div></div></div></section><section id="the-machine" class="section_layout254"><div class="padding-global relative-2"><div class="container-large"><div class="padding-section-large"><div class="layout254_component"><div class="margin-bottom margin-xlarge"><div class="text-align-center"><div class="max-width-large"><div class="margin-bottom margin-small"><h2>Built for Nightclubs, Engineered for Security</h2></div></div></div></div><div class="w-layout-grid layout254_content-bottom"><div id="w-node-_9f12f5bc-675a-93e1-ee7a-ede463b07737-b6d231c5" class="w-layout-grid layout254_left"><div data-w-id="6bd12637-9028-9a13-b803-96250418e946" style="opacity:0" class="machine-card"><div class="margin-bottom margin-xsmall"><div class="icon-1x1-medium purple w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1C16.5523 1 17 1.44772 17 2V5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V6C2 5.44772 2.44772 5 3 5H7V2C7 1.44772 7.44772 1 8 1H16ZM20 7H4V19H20V7ZM13 9V12H16V14H12.999L13 17H11L10.999 14H8V12H11V9H13ZM15 3H9V5H15V3Z"></path></svg></div></div><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h5">Safety above all</h3></div><p>Every AIRO dispenser exceeds UK safety and regulatory standards, certified for use in high-traffic nightlife environments. Peace of mind guaranteed.</p></div><div data-w-id="e2224acb-f278-8d15-7021-fe171d365519" style="opacity:0" class="machine-card"><div class="margin-bottom margin-xsmall"><div class="icon-1x1-medium green w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3.78307 2.82598L12 1L20.2169 2.82598C20.6745 2.92766 21 3.33347 21 3.80217V13.7889C21 15.795 19.9974 17.6684 18.3282 18.7812L12 23L5.6718 18.7812C4.00261 17.6684 3 15.795 3 13.7889V3.80217C3 3.33347 3.32553 2.92766 3.78307 2.82598ZM5 4.60434V13.7889C5 15.1263 5.6684 16.3752 6.7812 17.1171L12 20.5963L17.2188 17.1171C18.3316 16.3752 19 15.1263 19 13.7889V4.60434L12 3.04879L5 4.60434ZM13 10H16L11 17V12H8L13 5V10Z"></path></svg></div></div><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h5">Maximum protection</h3></div><p>Shatter-proof construction withstands the busiest nights. Integrated alarm system with remote monitoring protects against tampering or theft. Built tough for the nightclub environment.</p></div></div><div id="w-node-_9f12f5bc-675a-93e1-ee7a-ede463b07748-b6d231c5" class="layout254_image-wrapper"><img class="layout254_image" src="unnamed (26).png" alt="AIRO Solutions fragrance vending machine image" style="opacity:0" sizes="(max-width: 991px) 100vw, 28vw" data-w-id="9f12f5bc-675a-93e1-ee7a-ede463b07749" loading="lazy" srcset="unnamed (24).png"/></div><div id="w-node-_9f12f5bc-675a-93e1-ee7a-ede463b0774a-b6d231c5" class="w-layout-grid layout254_right"><div data-w-id="2b765fe0-6271-215e-758f-cad54849f891" style="opacity:0" class="machine-card"><div class="margin-bottom margin-xsmall"><div class="icon-1x1-medium blue w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 16H22V22H16V20H8V22H2V16H4V8H2V2H8V4H16V2H22V8H20V16ZM18 16V8H16V6H8V8H6V16H8V18H16V16H18ZM4 4V6H6V4H4ZM4 18V20H6V18H4ZM18 4V6H20V4H18ZM18 18V20H20V18H18Z"></path></svg></div></div><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h5">Designed to be easy</h3></div><p>Sleek touchscreen interface designed for quick transactions, even after a few drinks. Clear navigation, instant response, perfect user experience every time.</p></div><div data-w-id="619ae6f7-ee3c-cd33-cac9-147248bd8479" style="opacity:0" class="machine-card"><div class="margin-bottom margin-xsmall"><div class="icon-1x1-medium orange w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.17071 18C6.58254 16.8348 7.69378 16 9 16C10.3062 16 11.4175 16.8348 11.8293 18H22V20H11.8293C11.4175 21.1652 10.3062 22 9 22C7.69378 22 6.58254 21.1652 6.17071 20H2V18H6.17071ZM12.1707 11C12.5825 9.83481 13.6938 9 15 9C16.3062 9 17.4175 9.83481 17.8293 11H22V13H17.8293C17.4175 14.1652 16.3062 15 15 15C13.6938 15 12.5825 14.1652 12.1707 13H2V11H12.1707ZM6.17071 4C6.58254 2.83481 7.69378 2 9 2C10.3062 2 11.4175 2.83481 11.8293 4H22V6H11.8293C11.4175 7.16519 10.3062 8 9 8C7.69378 8 6.58254 7.16519 6.17071 6H2V4H6.17071ZM9 6C9.55228 6 10 5.55228 10 5C10 4.44772 9.55228 4 9 4C8.44772 4 8 4.44772 8 5C8 5.55228 8.44772 6 9 6ZM15 13C15.5523 13 16 12.5523 16 12C16 11.4477 15.5523 11 15 11C14.4477 11 14 11.4477 14 12C14 12.5523 14.4477 13 15 13ZM9 20C9.55228 20 10 19.5523 10 19C10 18.4477 9.55228 18 9 18C8.44772 18 8 18.4477 8 19C8 19.5523 8.44772 20 9 20Z"></path></svg></div></div><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h5">Personalised for your venue</h3></div><p>Customize your machine with 5-8 hand-selected designer fragrances tailored to your clientele. Choose from 20 LED color options to match your venue's aesthetic and create the perfect ambiance.</p></div></div></div></div></div></div></div><div class="how-it-work-gradient third"></div></section><section id="process" class="section_layout121"><div class="padding-global"><div class="container-large"><div class="padding-section-large"><div class="w-layout-grid layout121_component"><div class="layout121_content-left"><h2 class="heading-style-h3"><span class="text-gradient-secondary">Our business model:</span> a fair and profitable partnership for your venue</h2><div class="margin-top margin-medium"><div class="button-group"><a href="https://calendly.com/michael-airo/30min" target="_blank" class="button w-button">Talk to us</a><p class="small-text">Top venues earn £200-800 per month in passive revenue with AIRO dispensers</p></div></div></div><div class="layout121_content-right"><div data-w-id="214714e1-dea1-98fe-da36-437120db4915" class="layout121_timeline-wrapper"><div class="layout121_progress-bar-wrapper"><div class="layout121_progress-bar"></div></div><div data-w-id="214714e1-dea1-98fe-da36-437120db4923" class="w-layout-grid layout121_timeline-step"><div class="layout121_timeline-left"><div class="layout121_timeline-icon-wrapper"><div class="icon-1x1-medium purple w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14V16C8.68629 16 6 18.6863 6 22H4C4 17.5817 7.58172 14 12 14ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13ZM12 11C14.21 11 16 9.21 16 7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7C8 9.21 9.79 11 12 11ZM14.5946 18.8115C14.5327 18.5511 14.5 18.2794 14.5 18C14.5 17.7207 14.5327 17.449 14.5945 17.1886L13.6029 16.6161L14.6029 14.884L15.5952 15.4569C15.9883 15.0851 16.4676 14.8034 17 14.6449V13.5H19V14.6449C19.5324 14.8034 20.0116 15.0851 20.4047 15.4569L21.3971 14.8839L22.3972 16.616L21.4055 17.1885C21.4673 17.449 21.5 17.7207 21.5 18C21.5 18.2793 21.4673 18.551 21.4055 18.8114L22.3972 19.3839L21.3972 21.116L20.4048 20.543C20.0117 20.9149 19.5325 21.1966 19.0001 21.355V22.5H17.0001V21.3551C16.4677 21.1967 15.9884 20.915 15.5953 20.5431L14.603 21.1161L13.6029 19.384L14.5946 18.8115ZM18 19.5C18.8284 19.5 19.5 18.8284 19.5 18C19.5 17.1716 18.8284 16.5 18 16.5C17.1716 16.5 16.5 17.1716 16.5 18C16.5 18.8284 17.1716 19.5 18 19.5Z"></path></svg></div></div></div><div class="layout121_timeline-right"><div class="layout121_text-wrapper"><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h5">Seamless Installation</h3></div><p>Our certified electricians handle the complete installation after a thorough venue safety assessment. We position the dispenser in the optimal high-traffic location, configure the system, and personally train your staff. You're operational within hours, not days.</p></div></div></div><div data-w-id="214714e1-dea1-98fe-da36-437120db492e" class="w-layout-grid layout121_timeline-step"><div class="layout121_timeline-left"><div class="layout121_timeline-icon-wrapper"><div class="icon-1x1-medium blue w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.32943 3.27152C6.56252 2.83314 7.9923 3.10743 8.97927 4.0944C9.96652 5.08165 10.2407 6.51196 9.80178 7.74529L20.6465 18.5901L18.5252 20.7114L7.67936 9.86703C6.44627 10.3054 5.01649 10.0311 4.02952 9.04415C3.04227 8.0569 2.7681 6.62659 3.20701 5.39326L5.44373 7.62994C6.02952 8.21572 6.97927 8.21572 7.56505 7.62994C8.15084 7.04415 8.15084 6.0944 7.56505 5.50862L5.32943 3.27152ZM15.6968 5.15506L18.8788 3.38729L20.293 4.80151L18.5252 7.98349L16.7574 8.33704L14.6361 10.4584L13.2219 9.04415L15.3432 6.92283L15.6968 5.15506ZM8.62572 12.9332L10.747 15.0546L5.79729 20.0043C5.2115 20.5901 4.26175 20.5901 3.67597 20.0043C3.12464 19.453 3.09221 18.5792 3.57867 17.99L3.67597 17.883L8.62572 12.9332Z"></path></svg></div></div></div><div class="layout121_timeline-right"><div class="layout121_text-wrapper"><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h5">Professional Maintenance<br/></h3></div><p>AIRO manages everything-scheduled maintenance, fragrance refills, technical support, and repairs. You never lift a finger or spend a penny. We monitor remotely and respond proactively to keep your machine running at peak performance 24/7.</p></div></div></div><div data-w-id="214714e1-dea1-98fe-da36-437120db4939" class="w-layout-grid layout121_timeline-step"><div class="layout121_timeline-left"><div class="layout121_timeline-icon-wrapper"><div class="icon-1x1-medium green w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 5C20 6.65685 18.6569 8 17 8C15.3431 8 14 6.65685 14 5C14 3.34315 15.3431 2 17 2C18.6569 2 20 3.34315 20 5ZM7 3C4.79086 3 3 4.79086 3 7V9H5V7C5 5.89543 5.89543 5 7 5H10V3H7ZM17 21C19.2091 21 21 19.2091 21 17V15H19V17C19 18.1046 18.1046 19 17 19H14V21H17ZM7 16C8.65685 16 10 14.6569 10 13C10 11.3431 8.65685 10 7 10C5.34315 10 4 11.3431 4 13C4 14.6569 5.34315 16 7 16ZM17 9C14.7909 9 13 10.7909 13 13H21C21 10.7909 19.2091 9 17 9ZM3 21C3 18.7909 4.79086 17 7 17C9.20914 17 11 18.7909 11 21H3Z"></path></svg></div></div></div><div class="layout121_timeline-right"><div class="layout121_text-wrapper"><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h5">Fair Profit Split</h3></div><p>There’s no upfront cost for the venue - AIRO Solutions covers all refilling, maintenance, and installation, and we simply share the profit generated from the machine with you</p></div></div></div></div></div></div></div></div></div></section><div id="why-partner" data-w-id="447eb78a-1134-7f7a-5091-104f7315f942" class="circle-outer-wrapper"><div class="moving-circle-wrapper"><div class="circle"></div></div><section class="section_layout378"><div class="padding-global relative-2"><div class="container-large"><div class="padding-section-large why"><div class="margin-bottom margin-xxlarge"><div class="text-align-center"><div class="max-width-large align-center"><div class="margin-bottom margin-small"><h2><strong>Why Top Venues Choose AIRO Solutions</strong></h2></div></div></div></div><div class="partner-grid"><div data-duration-in="400" data-duration-out="200" data-current="Tab 1" data-easing="ease" class="layout495_component w-tabs"><div id="w-node-_8c8ac568-27c3-f342-ec8c-04ec72b360cf-b6d231c5" class="layout495_tabs-menu w-tab-menu"><a data-w-tab="Tab 1" class="layout495_tab-link w-inline-block w-tab-link w--current"><div class="layout495_tab-icon-wrapper"><div class="icon_1x1-small purple w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-transparency" viewBox="0 0 16 16">
+  <path d="M0 6.5a6.5 6.5 0 0 1 12.346-2.846 6.5 6.5 0 1 1-8.691 8.691A6.5 6.5 0 0 1 0 6.5m5.144 6.358a5.5 5.5 0 1 0 7.714-7.714 6.5 6.5 0 0 1-7.714 7.714m-.733-1.269q.546.226 1.144.33l-1.474-1.474q.104.597.33 1.144m2.614.386a5.5 5.5 0 0 0 1.173-.242L4.374 7.91a6 6 0 0 0-.296 1.118zm2.157-.672q.446-.25.838-.576L5.418 6.126a6 6 0 0 0-.587.826zm1.545-1.284q.325-.39.576-.837L6.953 4.83a6 6 0 0 0-.827.587l4.6 4.602Zm1.006-1.822q.183-.562.242-1.172L9.028 4.078q-.58.096-1.118.296l3.823 3.824Zm.186-2.642a5.5 5.5 0 0 0-.33-1.144 5.5 5.5 0 0 0-1.144-.33z"/>
+</svg></div></div><div class="layout495_tab-title"><h3 class="heading-style-h5">Complete Transparency</h3><div class="layout495_paragraph"><div class="margin-top margin-xsmall"><p>Track every transaction in real-time through your dedicated AIRO dashboard. View revenue, usage patterns, peak hours, and fragrance popularity. Monthly payouts arrive like clockwork via bank transfer. Full visibility, zero guesswork.</p></div></div></div></a><a data-w-tab="Tab 2" class="layout495_tab-link w-inline-block w-tab-link"><div class="layout495_tab-icon-wrapper"><div class="icon_1x1-small blue w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3.16113 4.46875C5.58508 2.0448 9.44716 1.9355 12.0008 4.14085C14.5528 1.9355 18.4149 2.0448 20.8388 4.46875C23.2584 6.88836 23.3716 10.741 21.1785 13.2947L13.4142 21.0858C12.6686 21.8313 11.4809 21.8652 10.6952 21.1874L10.5858 21.0858L2.82141 13.2947C0.628282 10.741 0.741522 6.88836 3.16113 4.46875ZM4.57534 5.88296C2.86819 7.59011 2.81942 10.3276 4.42902 12.0937L4.57534 12.2469L12 19.6715L17.3026 14.3675L13.7677 10.8327L12.7071 11.8934C11.5355 13.0649 9.636 13.0649 8.46443 11.8934C7.29286 10.7218 7.29286 8.8223 8.46443 7.65073L10.5656 5.54823C8.85292 4.17713 6.37076 4.23993 4.7286 5.73663L4.57534 5.88296ZM13.0606 8.71139C13.4511 8.32086 14.0843 8.32086 14.4748 8.71139L18.7168 12.9533L19.4246 12.2469C21.1819 10.4896 21.1819 7.64032 19.4246 5.88296C17.7174 4.17581 14.9799 4.12704 13.2139 5.73663L13.0606 5.88296L9.87864 9.06494C9.51601 9.42757 9.49011 9.99942 9.80094 10.3919L9.87864 10.4792C10.2413 10.8418 10.8131 10.8677 11.2056 10.5569L11.2929 10.4792L13.0606 8.71139Z"></path></svg></div></div><div class="layout495_tab-title"><h3 class="heading-style-h5"><strong>Fairness</strong></h3><div class="layout495_paragraph"><div class="margin-top margin-xsmall"><p>We believe that partnerships truly flourish when everyone is happy and earning their fair share. That’s why we’ve committed to a 50/50 profit split.</p></div></div></div></a><a data-w-tab="Tab 3" class="layout495_tab-link w-inline-block w-tab-link"><div class="layout495_tab-icon-wrapper"><div class="icon_1x1-small green w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26ZM12.0006 15.968L16.2473 18.3451L15.2988 13.5717L18.8719 10.2674L14.039 9.69434L12.0006 5.27502L9.96214 9.69434L5.12921 10.2674L8.70231 13.5717L7.75383 18.3451L12.0006 15.968Z"></path></svg></div></div><div class="layout495_tab-title"><h3 class="heading-style-h5">Unmatched dedication</h3><div class="layout495_paragraph"><div class="margin-top margin-xsmall"><p>While competitors chase quick installations, we build lasting relationships. Premium designer fragrances, not knockoffs. Certified electricians, not handymen. Proactive maintenance, not reactive repairs. We're dedicated to your long-term profitability.</p></div></div></div></a><a data-w-tab="Tab 4" class="layout495_tab-link w-inline-block w-tab-link"><div class="layout495_tab-icon-wrapper"><div class="icon_1x1-small orange w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9498 7.94975L10.5356 9.36396L8.00079 6.828L8.00004 20H6.00004L6.00079 6.828L3.46451 9.36396L2.05029 7.94975L7.00004 3L11.9498 7.94975ZM21.9498 16.0503L17 21L12.0503 16.0503L13.4645 14.636L16.0008 17.172L16 4H18L18.0008 17.172L20.5356 14.636L21.9498 16.0503Z"></path></svg></div></div><div class="layout495_tab-title"><h3 class="heading-style-h5">Under promise and over deliver</h3><div class="layout495_paragraph"><div class="margin-top margin-xsmall"><p>We exceed expectations because it's the right thing to do. Free installation by certified professionals. Unlimited maintenance and repairs. Premium fragrances at our cost. 24/7 technical support. We're not just a vendor-we're your partner in profit.</p></div></div></div></a></div><div class="layout495_tabs-content hidden w-tab-content"><div data-w-tab="Tab 1" class="layout495_tab-pane w-tab-pane w--tab-active"></div><div data-w-tab="Tab 2" class="layout495_tab-pane w-tab-pane"></div><div data-w-tab="Tab 3" class="layout495_tab-pane w-tab-pane"></div><div data-w-tab="Tab 4" class="layout495_tab-pane w-tab-pane"></div></div></div><img src="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b20469ef6677938fd93af5_luke-chesser-JKUTrJ4vK00-unsplash%201.png" loading="lazy" sizes="(max-width: 991px) 90vw, 42vw" srcset="https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b20469ef6677938fd93af5_luke-chesser-JKUTrJ4vK00-unsplash%201-p-500.png 500w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b20469ef6677938fd93af5_luke-chesser-JKUTrJ4vK00-unsplash%201-p-800.png 800w, https://cdn.prod.website-files.com/66ae64b3b5c7378eb6d23172/66b20469ef6677938fd93af5_luke-chesser-JKUTrJ4vK00-unsplash%201.png 886w" alt="" class="why-image"/></div></div></div></div></section><div class="overflow-hidden"><section id="safety" data-w-id="f87a6019-7b08-7d67-7263-dc7a802cf847" style="-webkit-transform:translate3d(0, 0, 0) scale3d(0.97, 0.9, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0.97, 0.9, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0.97, 0.9, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0.97, 0.9, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="section_layout41"><div class="padding-global relative-2"><div class="container-large"><div class="padding-section-large safety"><div class="layout41_content-left"><h2 class="h2-safety">Safety is Paramount</h2><div class="layout41_content-right"><p class="text-size-medium">Security is non-negotiable in the nightclub industry. Our dispensers feature shatter-proof construction, integrated alarms, remote monitoring, and full insurance coverage. UK certified and venue-tested. Your liability? Zero.</p><div class="margin-top margin-medium"><div class="logo2_logo-list"><div class="logo2_wrapper"><div class="safery-mark w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 97 100" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1.3347 1.27214L0 2.54402L1.55492 4.25701C2.40993 5.19898 3.40988 6.28497 3.77693 6.67034C4.72643 7.66672 9.99181 13.3135 10.862 14.2683C12.2005 15.7372 16.7147 20.6234 17.3908 21.3349C17.7579 21.7214 19.3795 23.4626 20.9945 25.2044C22.6095 26.9462 24.6134 29.0987 25.4473 29.9873C26.9345 31.5721 26.9668 31.6398 27.1101 33.4704C27.1904 34.4972 27.3797 36.8374 27.5311 38.671C27.6822 40.5045 27.9272 43.6249 28.0754 45.6051C28.2235 47.5853 28.4613 50.4056 28.6036 51.8725C28.7459 53.3393 29.0449 57.1797 29.2675 60.4067C29.4904 63.6338 29.7309 66.5306 29.8025 66.844C29.9012 67.279 29.4744 67.8828 27.9993 69.3939C26.9361 70.4828 22.763 74.7708 18.7255 78.9227C14.6881 83.0743 10.019 87.8677 8.34986 89.5743C6.68069 91.2809 4.39836 93.6161 3.27802 94.7639L1.241 96.8508L2.70917 98.1715L4.17733 99.4922L8.84877 94.7119C25.9094 77.2532 30.0392 73.1066 30.2421 73.2316C30.3678 73.3095 30.4757 74.176 30.4813 75.1575C30.4976 77.8858 31.4156 86.2147 31.7738 86.8836C31.9484 87.2097 32.3875 87.6703 32.7492 87.9071C33.3503 88.3005 33.4072 88.5083 33.4072 90.3074V92.277H35.4092H37.4113V90.2767V88.2765L46.4205 88.2784L55.4297 88.2803L56.0856 89.2785C57.0073 90.6813 58.6834 92.1874 60.0985 92.8842C61.1032 93.379 61.7436 93.476 63.9718 93.4707C66.3299 93.4651 66.7978 93.3824 67.9849 92.7621C71.0248 91.1731 72.9377 88.3112 73.1312 85.0623C73.1886 84.1011 73.1128 82.8711 72.9628 82.3287C72.8131 81.7862 72.7816 81.3424 72.8929 81.3424C73.0042 81.3424 73.5026 81.7926 74.0001 82.3425C74.4977 82.8927 76.4707 85.0228 78.3844 87.0764C80.2978 89.13 82.2825 91.2737 82.7945 91.8399C83.3064 92.4063 84.4255 93.6065 85.281 94.5068C86.1368 95.4075 87.6317 97.014 88.6033 98.0776C89.5747 99.1412 90.4965 100.006 90.6513 100C90.8058 99.9938 91.51 99.4194 92.2155 98.7233L93.4987 97.4581L91.2813 95.0738C90.0619 93.7627 88.1631 91.7268 87.062 90.5498C85.9609 89.3729 83.7987 87.042 82.2571 85.3703C80.7155 83.6984 79.0338 81.8862 78.52 81.3432C78.0061 80.8002 76.992 79.7076 76.2662 78.9155C74.3672 76.8427 69.1232 71.1864 68.5954 70.6418C68.203 70.2364 68.1777 69.871 68.3912 67.6932C68.5252 66.3261 68.7585 63.4071 68.9093 61.2068C69.0604 59.0066 69.3023 56.1863 69.4472 54.9395C69.5919 53.6927 69.8989 50.1523 70.129 47.0719C70.3594 43.9916 70.6898 39.8511 70.8633 37.8709L71.1791 34.2705L73.9152 34.1945L76.6514 34.1185L76.6591 29.6606L76.6669 25.2028L80.9969 20.7773C93.4413 8.05823 96.9388 4.41809 96.9388 4.1858C96.9388 3.8703 94.6925 1.60018 94.3804 1.60018C94.2558 1.60018 92.4683 3.3297 90.4078 5.44354C88.3473 7.55738 84.5293 11.4583 81.9234 14.1125L77.1853 18.9381V17.3726C77.1853 16.1887 77.0494 15.6343 76.6279 15.099C75.8965 14.1701 74.7598 13.6015 73.6347 13.6015C72.5627 13.6015 71.0457 14.0856 71.0457 14.4277C71.0457 14.8441 70.5761 14.6934 69.3906 13.8973C67.2895 12.4859 63.7248 11.2301 59.7867 10.5137C57.7459 10.1425 57.1766 9.94138 57.0756 9.55573C56.9563 9.09968 56.5242 9.06768 50.5079 9.06768C45.2841 9.06768 44.0413 9.13702 43.927 9.43519C43.8397 9.66215 43.1548 9.87097 42.1334 9.98165C41.2245 10.0803 39.5329 10.3494 38.3741 10.5796C36.4396 10.9642 36.2472 10.9631 36.0251 10.5665C35.8337 10.2249 35.3393 10.1345 33.6608 10.1345H31.5386V11.046C31.5386 12.4235 31.3443 12.7076 29.8772 13.474C28.488 14.1997 25.7031 16.7493 25.1652 17.7873C24.9292 18.2434 24.5814 18.3909 23.5956 18.4541C22.3815 18.5319 22.3257 18.5711 22.2457 19.4022C22.1995 19.8788 22.1039 20.2689 22.0332 20.2689C21.8655 20.2689 21.3597 19.7451 17.5243 15.5999C15.7625 13.6957 14.1408 11.9459 13.9206 11.7112C10.9725 8.57029 5.12257 2.23118 3.92801 0.883565C3.49717 0.397644 3.03777 0 2.90724 0C2.77644 0 2.06878 0.572331 1.3347 1.27214ZM54.4954 12.268C53.9589 12.6145 46.5681 12.6145 46.3538 12.268C46.2462 12.0944 47.7069 12.0027 50.5423 12.0053C53.4517 12.0083 54.7629 12.0952 54.4954 12.268ZM44.0357 13.1348L44.1203 13.8682H50.6424H57.1648V13.0503C57.1648 12.3966 57.2588 12.2598 57.632 12.3696C57.889 12.4451 58.838 12.6363 59.7413 12.7945C61.5514 13.1116 64.562 14.0776 65.9896 14.7998C67.4617 15.5447 69.6423 17.311 69.791 17.8793C69.9261 18.3954 69.6544 18.4021 48.8464 18.4021H27.7652L28.3522 17.5782C29.0502 16.5989 30.9738 15.151 31.3051 15.3556C31.4334 15.4351 31.5386 15.9127 31.5386 16.4176V17.3353H33.8076H36.0766V15.3401C36.0766 13.0567 35.733 13.3191 39.5468 12.6865C40.7947 12.4795 42.2963 12.3307 42.8835 12.3558C43.8365 12.3966 43.9604 12.4803 44.0357 13.1348ZM74.6493 16.6309C75.1218 17.3515 74.9998 17.8716 74.2476 18.341C73.7812 18.6319 73.6512 18.557 73.0824 17.6686C72.6315 16.9643 72.5216 16.5699 72.7108 16.3352C73.1526 15.7874 74.2009 15.9474 74.6493 16.6309ZM75.3167 20.8773C75.3167 20.9186 74.5959 21.6648 73.715 22.5359L72.1134 24.1192V23.261C72.1134 22.6943 72.2431 22.4025 72.4951 22.4025C72.7052 22.4025 72.9156 22.1331 72.9623 21.804C73.0221 21.3853 73.2879 21.1546 73.8485 21.0357C74.814 20.8303 75.3167 20.7762 75.3167 20.8773ZM26.2623 23.536C26.3277 24.1595 26.3397 24.7201 26.2893 24.7817C26.1713 24.926 24.0747 22.8682 24.0689 22.6025C24.0665 22.4926 24.5323 22.4025 25.104 22.4025C26.1307 22.4025 26.1454 22.4166 26.2623 23.536ZM69.1771 23.8693C69.1771 25.2562 69.1408 25.3362 68.5097 25.3362C67.8707 25.3362 67.8424 25.4052 67.8424 26.9678V28.5992L64.0561 32.4351L60.2696 36.2707H52.0438H43.8178V38.5326V40.7944L49.8034 40.8662L55.789 40.9379L52.0374 44.7866L48.2856 48.635L46.3855 46.642C45.3402 45.5459 43.2239 43.2822 41.6823 41.6116C40.1407 39.941 38.6993 38.3851 38.479 38.1541C38.2588 37.9234 36.6385 36.175 34.8786 34.2689C33.1186 32.3628 31.1678 30.2634 30.5437 29.6033C29.3313 28.3208 29.2515 28.0613 29.0102 24.6027L28.8567 22.4025H49.017H69.1771V23.8693ZM73.6622 29.9367L73.5816 31.3368H72.5138C71.8614 31.3368 71.4461 31.2123 71.4461 31.0168C71.4461 30.656 73.1985 28.5851 73.5287 28.5557C73.6467 28.5451 73.7068 29.1665 73.6622 29.9367ZM68.3755 34.6039C68.3733 35.6562 67.5541 47.2549 67.3157 49.6055C67.1745 50.999 66.923 54.2994 66.7573 56.9397C66.5915 59.58 66.3152 63.0604 66.1433 64.6739L65.8307 67.6076L63.9384 65.6073C62.8976 64.5072 60.4394 61.8669 58.4752 59.74C54.3251 55.2454 52.7793 53.5785 51.7531 52.492C51.3375 52.0519 51.0967 51.5727 51.204 51.3993C51.309 51.2295 53.6399 48.806 56.3837 46.0142C59.1276 43.2222 62.852 39.4076 64.6599 37.5375C66.4679 35.6675 68.0439 34.1371 68.1619 34.1371C68.2796 34.1371 68.376 34.347 68.3755 34.6039ZM34.3719 39.637C36.0035 41.3793 37.6251 43.1203 37.9756 43.5062C40.1896 45.9441 42.8723 48.8575 43.9364 49.9794C44.6181 50.6985 45.1408 51.4393 45.0975 51.626C45.0543 51.8127 42.1996 54.8525 38.7535 58.3809C34.5609 62.6739 32.4249 64.6838 32.2973 64.456C32.1926 64.2688 31.9203 61.601 31.6926 58.5273C31.4649 55.4539 31.154 51.6191 31.0015 50.0056C30.7218 47.0442 29.9434 36.3086 29.9391 35.356C29.9373 34.9207 30.0502 34.9668 30.6711 35.6552C31.075 36.103 32.7401 37.8946 34.3719 39.637ZM48.8096 55.0424C49.033 55.4291 50.0599 56.5607 54.7204 61.5567C56.2684 63.2161 57.8281 64.8963 58.1864 65.2905C58.5446 65.6849 60.0806 67.3382 61.5995 68.9648C65.2509 72.8748 65.4399 73.1332 65.4399 74.2112V75.1303L63.3968 75.3028C60.8982 75.5138 59.0603 76.3264 57.4833 77.918C55.9793 79.4355 55.0175 81.4486 54.8347 83.4608L54.6881 85.0762H44.1811H33.6741L33.6715 84.3428C33.6661 82.869 33.1408 75.8055 32.849 73.2866C32.569 70.8698 32.5837 70.654 33.0695 70.0372C34.2286 68.565 47.9773 54.6728 48.2752 54.6728C48.4516 54.6728 48.6921 54.8392 48.8096 55.0424ZM66.7744 80.4735C71.0753 83.5587 68.2625 90.0269 62.9654 89.2332C60.032 88.7937 58.2414 85.4349 59.4279 82.5978C59.8756 81.5275 61.7703 79.8609 62.7705 79.6574C64.0788 79.3915 65.737 79.7294 66.7744 80.4735ZM62.3175 81.9283C61.6587 82.2463 60.902 83.6488 60.902 84.5516C60.902 86.2387 62.8997 87.7247 64.6511 87.3404C66.0098 87.0423 66.7746 85.9723 66.7746 84.3692C66.7746 83.1565 66.6756 82.9066 65.9533 82.2996C65.0643 81.5523 63.44 81.3864 62.3175 81.9283Z" fill="currentColor"/>
+</svg></div></div><div id="w-node-_48a4303e-cd51-521a-f47d-ece8d4af42ec-b6d231c5" class="logo2_wrapper"><div class="safery-mark w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 226 100" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.7667 0.55703C11.3674 1.28965 7.17033 3.46381 5.03805 5.59609C2.79126 7.84251 0.843898 11.8651 0.311754 15.3577C0.0475352 17.0909 -0.0484433 29.0193 0.0227069 51.3034L0.129061 84.655L1.10812 87.3335C2.93986 92.3447 5.492 95.5665 9.24813 97.611C13.6557 100.01 6.41324 99.8233 99.8133 99.9441C194.155 100.066 187.773 100.228 193.302 97.5809C196.59 96.0067 199.462 93.2463 200.912 90.2647C202.852 86.2796 203.005 84.6153 203.012 67.3759L203.018 51.5791L206.968 46.2532C211.61 39.9938 218.371 31.5796 222.641 26.7473C226.367 22.5302 226.411 21.988 223.016 22.1237C220.216 22.2352 216.828 23.0371 214.585 24.1199C212.24 25.2513 209.504 27.932 206.168 32.3648L203.203 36.3044L202.994 25.8309C202.805 16.4009 202.703 15.118 201.978 12.949C199.72 6.19456 195.778 2.32763 189.519 0.726753C186.626 -0.0129117 185.687 -0.0206935 101.885 0.00821126C30.7203 0.0330397 16.7904 0.120865 14.7667 0.55703ZM188.926 5.01281C193.544 6.3843 196.4 9.46562 197.975 14.7767C198.474 16.462 198.571 18.9345 198.571 29.9898V43.1908L195.884 47.3375C194.407 49.618 191.331 54.3658 189.049 57.8877C186.768 61.4096 184.495 64.6725 183.999 65.1387L183.096 65.9862L182.333 65.0161C181.914 64.4828 181.287 63.1802 180.94 62.1215C180.594 61.0632 179.904 59.3856 179.407 58.3935L178.503 56.5896L176.51 56.7549C174.116 56.9535 171.391 58.5006 170.102 60.3939C169.001 62.0107 169.118 63.3077 170.947 69.7987C173.619 79.2802 175.71 81.574 181.201 81.0463C184.147 80.7632 185.725 79.3921 188.164 74.9949C190.416 70.9341 196.684 60.76 197.85 59.2707C198.574 58.3469 198.576 58.3802 198.481 71.8702L198.386 85.3961L197.409 87.4787C195.546 91.452 192.605 93.7633 187.776 95.0484C184.821 95.8352 17.4367 95.8448 14.4836 95.0588C10.2935 93.9434 7.17514 91.0918 5.43678 86.7865L4.57594 84.655V49.6358V14.6166L5.5524 12.534C6.80087 9.87177 8.68597 7.79248 10.9872 6.53994C15.0235 4.34318 9.2107 4.47659 101.877 4.45028C178.475 4.42841 187.146 4.48437 188.926 5.01281ZM93.8549 16.4394C91.8375 17.3177 91.8149 17.5512 91.9279 36.2455L92.0313 53.406L93.0711 54.3002C94.4808 55.5127 96.6219 55.5131 98.0323 54.3009L99.0722 53.4075L99.2575 45.6851L99.4427 37.9627L107.873 37.863L116.304 37.7633V45.339V52.9142L117.263 54.0541C118.064 55.0061 118.489 55.1944 119.837 55.1944C121.008 55.1944 121.735 54.9494 122.49 54.3002L123.53 53.406L123.633 36.2455C123.745 17.7502 123.716 17.4278 121.829 16.452C120.517 15.7735 119.508 15.7706 118.21 16.4417C116.532 17.3095 116.304 18.3564 116.304 25.1953V31.4777H107.781H99.2575V24.9682C99.2575 21.2124 99.0959 18.1574 98.8758 17.7461C98.4359 16.9234 96.6386 15.9069 95.6629 15.928C95.296 15.9362 94.4826 16.1663 93.8549 16.4394ZM142.156 16.2964C137.55 17.072 134.167 19.1976 132.52 22.3512C131.398 24.4994 131.395 28.8151 132.514 30.957C134.234 34.2492 137.198 35.9286 144.915 37.9831C147.532 38.6801 150.129 39.4854 150.685 39.773C154.904 41.9549 154.186 47.2986 149.43 49.1151C148.313 49.5413 147.032 49.678 145.073 49.5791C142.653 49.4568 142.117 49.2949 140.881 48.3139C140.042 47.6473 138.932 46.1531 138.157 44.646C136.54 41.5039 135.394 40.5541 133.62 40.8869C131.752 41.2375 130.936 42.3225 130.967 44.417C131.016 47.7325 133.692 51.6232 137.133 53.3826C139.657 54.673 142.164 55.1855 145.95 55.1855C152.874 55.1855 157.692 52.8286 159.81 48.4062C161.814 44.2191 161.315 39.5239 158.546 36.5193C156.771 34.5946 154.141 33.2698 149.596 32.0113C142.075 29.9291 141.087 29.5744 139.927 28.5376C138.964 27.6775 138.74 27.1961 138.74 25.9865C138.74 23.3332 141.421 21.4952 145.313 21.4804C148.87 21.467 150.614 22.6136 152.756 26.3756C153.306 27.3399 154.072 28.2985 154.46 28.5064C156.599 29.6511 159.297 27.8568 159.282 25.2991C159.265 22.3227 156.637 18.8886 153.219 17.3766C150.35 16.1078 145.873 15.6705 142.156 16.2964ZM24.9575 16.989C24.5499 17.1647 23.8828 17.679 23.4752 18.1318C22.7622 18.9241 22.73 19.5589 22.6236 34.944C22.5632 43.7377 22.6158 51.4935 22.7411 52.1787C23.082 54.046 24.4227 55.1944 26.2619 55.1944C29.8579 55.1944 30.3308 54.0334 30.3308 45.2008V38.5186H33.0582C35.3584 38.5186 36.0006 38.6642 37.1542 39.4472C39.1534 40.8039 39.9401 41.8308 43.5388 47.7829C47.5854 54.4755 48.2558 55.1944 50.4485 55.1944C52.7505 55.1944 54.0475 54.1316 54.0475 52.2457C54.0475 49.3323 49.0844 41.3383 45.6447 38.712L43.9909 37.4491L45.5914 37.027C47.5914 36.4997 49.8515 35.1997 51.1559 33.8267C52.6942 32.2073 53.4097 30.1284 53.4312 27.2161C53.4631 22.8715 51.5658 19.7131 47.8233 17.8813L45.7096 16.8467L35.7041 16.7581C30.2011 16.7096 25.3651 16.8133 24.9575 16.989ZM42.9636 23.1861C46.782 25.4221 46.7783 30.2429 42.957 31.975C41.5547 32.6109 40.3203 32.7688 35.7968 32.8918L30.3308 33.0408V27.5737V22.107L36.0539 22.2993C40.7435 22.4568 41.9916 22.6173 42.9636 23.1861ZM66.9913 27.1438C61.7829 28.6194 58.5955 32.4575 57.678 38.357C56.6082 45.2389 59.4082 51.1818 65.0187 53.9367C67.0431 54.9309 67.5141 55.0091 71.4645 55.0091C75.2806 55.0091 75.941 54.9083 77.7813 54.0452C78.9115 53.5149 80.442 52.5492 81.1827 51.8989C86.058 47.6184 87.0022 38.1877 83.1401 32.3437C80.6625 28.5946 77.4707 26.9726 72.2056 26.7877C70.0629 26.7125 68.0222 26.8518 66.9913 27.1438ZM74.8285 32.6909C77.3032 34.3585 78.5013 37.0455 78.5013 40.9273C78.5013 46.4878 75.8176 50.0064 71.5764 50.0064C67.4589 50.0064 65.0924 47.4101 64.5592 42.307C64.1245 38.1499 65.486 34.4526 68.1004 32.6909C69.848 31.5133 73.0809 31.5133 74.8285 32.6909ZM25.0494 60.9112C22.7822 61.7202 21.2025 63.191 19.9862 65.6245C18.9894 67.6197 18.843 68.299 18.843 70.9371C18.843 74.6762 19.5501 76.8648 21.4589 79.033C23.3084 81.1345 25.258 81.9168 28.6439 81.9168C32.6528 81.9168 35.2009 80.6016 36.6339 77.7927C37.9502 75.2124 37.4777 73.3525 35.5055 73.3525C34.6976 73.3525 34.3563 73.6927 33.5359 75.3139C32.9445 76.4831 32.0688 77.5559 31.368 77.9698C28.9278 79.4114 25.3562 78.4897 23.9321 76.051C23.0542 74.548 22.6974 70.3353 23.2695 68.2275C23.5089 67.3447 24.2545 66.0229 24.926 65.2903C26.0221 64.0944 26.3801 63.941 28.4235 63.7932C30.6751 63.6305 30.7147 63.6446 32.0903 65.095C32.8548 65.9014 33.7805 67.0053 34.1466 67.5482C35.4162 69.43 37.6189 68.3479 37.242 66.0274C36.7273 62.8545 33.0323 60.3709 28.8685 60.3987C27.5326 60.4076 25.8142 60.6381 25.0494 60.9112ZM104.149 60.8271C103.825 61.151 103.704 63.971 103.704 71.1946V81.1175L104.631 81.7245C105.489 82.2866 105.625 82.2866 106.484 81.7245L107.41 81.1175V71.4666C107.41 65.523 107.263 61.5408 107.027 61.0991C106.592 60.2868 104.853 60.1226 104.149 60.8271ZM112.228 61.1236C110.811 62.5399 111.675 64.2201 113.719 64.0248C115.389 63.8651 116.084 62.3146 115.017 61.1347C114.154 60.1812 113.174 60.1771 112.228 61.1236ZM156.162 61.5768C155.824 62.0585 155.585 63.178 155.585 64.2745C155.585 66.017 155.506 66.1786 154.473 66.5688C152.805 67.198 153.147 69.2762 154.918 69.2762C155.522 69.2762 155.585 69.6853 155.587 73.6304C155.59 80.668 156.33 81.9898 160.245 81.9546C163.246 81.9276 165.036 80.5134 163.59 79.3128C163.304 79.0764 162.506 78.9207 161.815 78.9674C159.735 79.1075 159.661 78.9337 159.661 73.8865C159.661 69.3177 159.669 69.2762 160.517 69.2762C162.91 69.2762 163.332 67.0902 161.047 66.5243C159.672 66.1837 159.661 66.1656 159.661 64.2905C159.661 62.077 158.898 60.753 157.623 60.753C157.129 60.753 156.484 61.1169 156.162 61.5768ZM46.3863 66.3635C42.0454 67.122 40.1173 69.8439 40.3982 74.817C40.6568 79.3939 43.3709 81.9683 47.9379 81.9683C52.7835 81.9683 55.6536 79.0408 55.6728 74.0781C55.694 68.6873 51.7655 65.4237 46.3863 66.3635ZM59.6487 66.5458C58.8976 67.072 58.865 67.3874 58.865 74.1062V81.1175L59.7914 81.7245C60.6337 82.2766 60.7979 82.2792 61.5998 81.7538C62.4373 81.2049 62.4895 80.9363 62.6381 76.4305C62.8353 70.4468 63.34 69.2936 65.768 69.2817C67.6998 69.2725 67.9303 69.928 68.0719 75.832C68.1953 80.9878 68.2286 81.1827 69.0909 81.7475C69.8988 82.277 70.0644 82.2774 70.8641 81.7538C71.7038 81.2035 71.7535 80.944 71.8965 76.3471C72.0692 70.8007 72.578 69.56 74.7677 69.3436C76.8155 69.1409 77.0231 69.6119 77.0231 74.4631C77.0231 79.8023 77.2487 81.0222 78.3716 81.7582C79.1665 82.2789 79.3336 82.2744 80.197 81.7085L81.1475 81.086L81.0308 74.7792L80.9141 68.4724L79.7038 67.3922C78.6543 66.455 78.2007 66.3116 76.289 66.3116C74.3846 66.3116 73.9177 66.458 72.86 67.3866L71.6357 68.4617L70.4324 67.3866C68.7967 65.9251 65.9336 65.8599 63.9029 67.238C62.2509 68.359 62.2805 68.3568 62.1334 67.3711C61.9715 66.2875 60.6463 65.8473 59.6487 66.5458ZM85.9958 66.3549C85.1772 66.6577 85.1757 66.6766 85.1757 76.6454C85.1757 82.1384 85.2768 86.8962 85.4006 87.2186C85.6663 87.9112 87.4221 88.0042 88.0661 87.3602C88.3515 87.0748 88.5108 85.6144 88.5108 83.2839C88.5108 81.1097 88.6594 79.6522 88.8814 79.6522C89.0852 79.6522 89.252 79.8053 89.252 79.9924C89.252 80.7699 91.916 81.9613 93.6548 81.9613C96.6242 81.9613 98.7676 80.3926 99.8007 77.4644C101.249 73.3603 99.7718 68.475 96.5849 66.8267C94.7839 65.8954 91.3946 66.266 90.065 67.5397C88.7658 68.7844 88.6524 68.7796 88.3908 67.4715C88.1562 66.2982 87.2679 65.8843 85.9958 66.3549ZM112.697 66.3475C112.182 66.5384 111.815 67.0824 111.665 67.8813C111.266 70.0092 111.623 81.0515 112.107 81.534C112.669 82.0943 114.381 82.0943 114.942 81.534C115.516 80.9611 115.769 68.1318 115.227 67.118C114.763 66.2512 113.773 65.9495 112.697 66.3475ZM124.253 66.273C120.923 66.8363 118.644 69.3318 119.866 71.076C120.673 72.2282 121.43 72.0607 122.974 70.3879C124.226 69.0316 124.503 68.9056 126.232 68.9056C127.763 68.9056 128.229 69.0612 128.697 69.7294C130.009 71.6023 129.518 71.9799 124.456 72.9923C120.163 73.8505 118.898 74.9226 118.898 77.7012C118.898 81.6 123.498 83.2638 127.763 80.9081L129.403 80.0028L130.617 81.1794C131.813 82.3385 131.845 82.3463 132.813 81.7123C133.646 81.1664 133.759 80.8907 133.558 79.8972C133.427 79.2531 133.196 76.5579 133.044 73.9083C132.748 68.757 132.422 67.7238 130.838 66.9186C129.564 66.2708 126.21 65.9421 124.253 66.273ZM137.821 66.5588C137.096 67.0672 137.056 67.4441 137.056 73.8587C137.056 80.794 137.189 81.4984 138.588 81.9813C138.922 82.0962 139.525 81.9591 139.928 81.6763C140.578 81.2216 140.682 80.615 140.834 76.4234C140.934 73.6701 141.2 71.3225 141.469 70.8196C142.426 69.0353 145.589 68.5802 146.562 70.087C146.735 70.3545 146.96 72.9415 147.061 75.8361C147.163 78.731 147.413 81.255 147.617 81.4458C148.478 82.2507 149.619 82.2829 150.378 81.524C151.065 80.8362 151.137 80.3159 151.129 76.0391C151.119 70.6592 150.799 68.8256 149.657 67.6104C147.924 65.7654 143.593 65.778 141.85 67.6334L140.995 68.5439L140.548 67.4815C140.014 66.2097 138.871 65.8232 137.821 66.5588ZM49.3909 69.2669C51.5535 70.0892 52.6049 74.4735 51.2619 77.0704C50.6931 78.1703 49.0199 79.2817 47.933 79.2817C45.7615 79.2817 44.0416 76.9522 44.0428 74.0128C44.0439 70.3549 46.506 68.17 49.3909 69.2669ZM95.0329 70.1655C95.9175 71.0501 96.3095 71.7953 96.3488 72.6669C96.5015 76.064 95.7678 77.9591 94.0142 78.6965C91.4817 79.7612 89.2338 77.9657 88.9596 74.6595C88.7506 72.1396 89.3632 70.5354 90.8899 69.6041C92.5523 68.5906 93.5999 68.7325 95.0329 70.1655ZM128.713 77.6734C128.118 78.582 126.134 79.6522 125.045 79.6522C124.744 79.6522 124.046 79.2639 123.494 78.7892C122.709 78.1132 122.543 77.7208 122.73 76.9774C122.999 75.905 123.311 75.7375 126.68 74.8563L129.089 74.2263L129.205 75.4855C129.272 76.2111 129.064 77.1379 128.713 77.6734Z" fill="currentColor"/>
+</svg></div></div><div class="logo2_wrapper"><div class="safery-mark w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 141 100" fill="none">
+<g clip-path="url(#clip0_37_5)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M55.0607 99.7494C53.3974 99.9164 51.7268 100 50.0552 100C36.7797 100 24.048 94.7322 14.6608 85.3553C5.27365 75.9785 0 63.2608 0 50C0 36.7392 5.27365 24.0215 14.6608 14.6447C24.048 5.26784 36.7797 0 50.0552 0C51.7268 -4.80717e-08 53.3974 0.0836474 55.0607 0.250628V15.2506C53.4003 15.0478 51.7275 14.9641 50.0552 15C40.7623 15 31.8501 18.6875 25.2791 25.2513C18.7081 31.815 15.0165 40.7174 15.0165 50C15.0165 59.2826 18.7081 68.185 25.2791 74.7487C31.8501 81.3125 40.7623 85 50.0552 85C51.7275 85.0359 53.4003 84.9522 55.0607 84.7494V99.7494Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M140.154 99.7494C138.491 99.9164 136.821 100 135.149 100C121.873 100 109.142 94.7322 99.7546 85.3553C90.3674 75.9785 85.0938 63.2608 85.0938 50C85.0938 36.7392 90.3674 24.0215 99.7546 14.6447C109.142 5.26784 121.873 0 135.149 0C136.821 -4.80717e-08 138.491 0.0836474 140.154 0.250628V15.2506C138.494 15.0478 136.821 14.9641 135.149 15C127.16 14.9993 119.411 17.7258 113.186 22.7273C106.96 27.7289 102.633 34.7052 100.921 42.5H130.143V57.5H100.921C102.633 65.2948 106.96 72.2711 113.186 77.2727C119.411 82.2742 127.16 85.0007 135.149 85C136.821 85.0359 138.494 84.9522 140.154 84.7494V99.7494Z" fill="currentColor"/>
+</g>
+<defs>
+<clipPath id="clip0_37_5">
+<rect width="140.154" height="100" fill="white"/>
+</clipPath>
+</defs>
+</svg></div></div></div></div></div></div></div></div></div><div style="opacity:0.04;-webkit-transform:translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="safety-shield w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-shield-fill-check" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7 7 0 0 0 1.048-.625 11.8 11.8 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.54 1.54 0 0 0-1.044-1.263 63 63 0 0 0-2.887-.87C9.843.266 8.69 0 8 0m2.146 5.146a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793z"/>
+</svg></div></section></div></div><section id="about" class="section_layout484"><div class="padding-global"><div class="container-large"><div class="padding-section-large"><div class="about-us-block"><div class="layout484_component"><div class="max-width-45rem"><div class="margin-bottom margin-small"><h2 class="layout484_text">Nightlife Entrepreneurs Revolutionizing Venue Revenue </h2></div><div class="margin-bottom margin-xsmall"><p class="text-size-large">Founded by entrepreneurs who understand the nightclub industry from the inside, AIRO Solutions was born from a simple observation: venue owners need new revenue streams without additional overhead. We saw an opportunity to deliver real value to both venues and their guests.<br/></p></div><div class="w-layout-grid layout195_item-list"><div class="layout195_text-wrapper"><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h6">Our Foundation: Proven Success in Premium Markets</h3></div><p>Our founders built their reputation on quality, safety, and partnership-first thinking. From securing major retail partnerships to pioneering safety standards, we've always believed that doing things right- not fast - creates lasting success. That philosophy drives everything we do at AIRO.</p></div><div class="layout195_text-wrapper"><div class="margin-bottom margin-xsmall"><h3 class="heading-style-h6">The AIRO Mission: Elevate Every Venue</h3></div><p>We partner exclusively with nightclubs, luxury lounges, and high-end bars to deliver passive revenue and elevated guest experiences. Every dispenser features designer fragrances your guests actually want, Nayax contactless technology they expect, and security features you require. We handle everything so you can focus on what you do best - creating unforgettable nights.</p></div></div></div></div><img src="unnamed (27) (1).jpg" loading="lazy" id="w-node-_4af3370c-eb75-d7ec-52a8-c866eb757367-b6d231c5" sizes="(max-width: 767px) 90vw, (max-width: 991px) 45vw, 42vw" alt="Founders of AIRO Solutions - Michael and Freddie" srcset="unnamed (27) (1).jpg" class="about-us-image"/></div><div class="layout484_split-text w-embed w-script"><!-- Include GSAP library, ScrollTrigger plugin, Split-Type library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/split-type"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Function to check if the viewport width is 767px or less
+function isMobile() {
+  return window.innerWidth <= 767;
+}
+
+// Split text into individual words
+const layoutText = new SplitType(".layout484_text", { types: "words" });
+const layoutTL = gsap.timeline();
+
+// Define different start and end values for mobile devices
+let startValue = isMobile() ? "top 35%" : "top center";
+let endValue = isMobile() ? "bottom 90%" : "bottom center";
+
+layoutTL.from(layoutText.words,{
+  // Initial opacity for each word
+  opacity: 0.25,
+  // Stagger animation of each word
+  stagger: 0.1,
+  scrollTrigger: { 
+    trigger: ".section_layout484",
+    // Trigger animation when .section_layout484 reaches certain part of the viewport
+    start: "top 70%",
+    // End animation when .section_layout484 reaches certain part of the viewport
+    end: "bottom 95%",
+    // Smooth transition based on scroll position
+    scrub: 2 
+  }
+});
+});
+</script></div></div></div></div></section><section id="faqs" class="section_faq11"><div class="padding-global"><div class="container-large"><div class="padding-section-large"><div class="margin-bottom margin-xlarge"><div class="faq3_content"><div class="margin-bottom margin-small"><h2>Frequently Asked Questions<br/>‍<span class="text-gradient-secondary">Complete transparency</span></h2></div></div></div><div class="w-layout-grid faq11_component"><div class="w-layout-grid faq11_list"><div class="faq11_accordion"><div data-w-id="7ef8bf84-69da-a74e-b3e4-fc325a0d446b" class="faq11_question"><div class="text-size-medium text-weight-bold">What are the costs for my venue?</div><div class="faq11_icon-wrapper"><div class="icon-embed-small-2 w-embed"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.3333 15.667V16.3336C25.3333 16.7018 25.0349 17.0003 24.6667 17.0003H17V24.667C17 25.0351 16.7015 25.3336 16.3333 25.3336H15.6667C15.2985 25.3336 15 25.0351 15 24.667V17.0003H7.3333C6.96511 17.0003 6.66663 16.7018 6.66663 16.3336V15.667C6.66663 15.2988 6.96511 15.0003 7.3333 15.0003H15V7.33365C15 6.96546 15.2985 6.66699 15.6667 6.66699H16.3333C16.7015 6.66699 17 6.96546 17 7.33365V15.0003H24.6667C25.0349 15.0003 25.3333 15.2988 25.3333 15.667Z" fill="currentColor"/>
+</svg></div></div></div><div style="width:100%;height:0px" class="faq11_answer"><div class="margin-bottom margin-small"><p>Zero upfront costs, zero maintenance fees, zero refill charges. Your only expense is electricity - typically £5-10 per month. AIRO covers installation, maintenance, fragrances, payment processing, insurance, and all repairs. You provide the space and power outlet, we handle everything else.</p></div></div></div><div class="faq11_accordion"><div data-w-id="7ef8bf84-69da-a74e-b3e4-fc325a0d4475" class="faq11_question"><div class="text-size-medium text-weight-bold">How does the revenue split work?</div><div class="faq11_icon-wrapper"><div class="icon-embed-small-2 w-embed"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.3333 15.667V16.3336C25.3333 16.7018 25.0349 17.0003 24.6667 17.0003H17V24.667C17 25.0351 16.7015 25.3336 16.3333 25.3336H15.6667C15.2985 25.3336 15 25.0351 15 24.667V17.0003H7.3333C6.96511 17.0003 6.66663 16.7018 6.66663 16.3336V15.667C6.66663 15.2988 6.96511 15.0003 7.3333 15.0003H15V7.33365C15 6.96546 15.2985 6.66699 15.6667 6.66699H16.3333C16.7015 6.66699 17 6.96546 17 7.33365V15.0003H24.6667C25.0349 15.0003 25.3333 15.2988 25.3333 15.667Z" fill="currentColor"/>
+</svg></div></div></div><div style="width:100%;height:0px" class="faq11_answer"><div class="margin-bottom margin-small"><p>Simple and fair: 50/50 net profit split paid monthly via bank transfer. We deduct the wholesale cost of fragrances and payment processing fees, then split the remaining profit equally. You receive detailed monthly statements showing all transactions, costs, and your payout. Average venue earns £200-800/month depending on foot traffic.</p></div></div></div><div class="faq11_accordion"><div data-w-id="7ef8bf84-69da-a74e-b3e4-fc325a0d447f" class="faq11_question"><div class="text-size-medium text-weight-bold">What happens if the machine breaks or gets damaged?</div><div class="faq11_icon-wrapper"><div class="icon-embed-small-2 w-embed"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.3333 15.667V16.3336C25.3333 16.7018 25.0349 17.0003 24.6667 17.0003H17V24.667C17 25.0351 16.7015 25.3336 16.3333 25.3336H15.6667C15.2985 25.3336 15 25.0351 15 24.667V17.0003H7.3333C6.96511 17.0003 6.66663 16.7018 6.66663 16.3336V15.667C6.66663 15.2988 6.96511 15.0003 7.3333 15.0003H15V7.33365C15 6.96546 15.2985 6.66699 15.6667 6.66699H16.3333C16.7015 6.66699 17 6.96546 17 7.33365V15.0003H24.6667C25.0349 15.0003 25.3333 15.2988 25.3333 15.667Z" fill="currentColor"/>
+</svg></div></div></div><div style="width:100%;height:0px" class="faq11_answer"><div class="margin-bottom margin-small"><p>AIRO assumes 100% liability for repairs and maintenance. If something breaks - technical malfunction, vandalism, accident - we fix or replace it at no cost to you. Our remote monitoring alerts us to issues proactively. Average response time: same business day for technical issues, within 72 hours for on-site repairs.</p></div></div></div><div class="faq11_accordion"><div data-w-id="7ef8bf84-69da-a74e-b3e4-fc325a0d4489" class="faq11_question"><div class="text-size-medium text-weight-bold">Can the cost of fragrance  be changed?</div><div class="faq11_icon-wrapper"><div class="icon-embed-small-2 w-embed"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.3333 15.667V16.3336C25.3333 16.7018 25.0349 17.0003 24.6667 17.0003H17V24.667C17 25.0351 16.7015 25.3336 16.3333 25.3336H15.6667C15.2985 25.3336 15 25.0351 15 24.667V17.0003H7.3333C6.96511 17.0003 6.66663 16.7018 6.66663 16.3336V15.667C6.66663 15.2988 6.96511 15.0003 7.3333 15.0003H15V7.33365C15 6.96546 15.2985 6.66699 15.6667 6.66699H16.3333C16.7015 6.66699 17 6.96546 17 7.33365V15.0003H24.6667C25.0349 15.0003 25.3333 15.2988 25.3333 15.667Z" fill="currentColor"/>
+</svg></div></div></div><div style="width:100%;height:0px" class="faq11_answer"><div class="margin-bottom margin-small"><p>We schedule a site visit to assess your venue and identify the optimal placement - typically in restroom areas for privacy and high usage. Our certified electrician handles the complete installation, ensuring all safety and electrical compliance. We configure the machine, load fragrances, train your staff, and test the system. Total process: 2-4 hours. You're earning that same day. </p></div></div></div><div class="faq11_accordion"><div data-w-id="7ef8bf84-69da-a74e-b3e4-fc325a0d4493" class="faq11_question"><div class="text-size-medium text-weight-bold">Who handles maintenance and refills?</div><div class="faq11_icon-wrapper"><div class="icon-embed-small-2 w-embed"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.3333 15.667V16.3336C25.3333 16.7018 25.0349 17.0003 24.6667 17.0003H17V24.667C17 25.0351 16.7015 25.3336 16.3333 25.3336H15.6667C15.2985 25.3336 15 25.0351 15 24.667V17.0003H7.3333C6.96511 17.0003 6.66663 16.7018 6.66663 16.3336V15.667C6.66663 15.2988 6.96511 15.0003 7.3333 15.0003H15V7.33365C15 6.96546 15.2985 6.66699 15.6667 6.66699H16.3333C16.7015 6.66699 17 6.96546 17 7.33365V15.0003H24.6667C25.0349 15.0003 25.3333 15.2988 25.3333 15.667Z" fill="currentColor"/>
+</svg></div></div></div><div style="width:100%;height:0px" class="faq11_answer"><div class="margin-bottom margin-small"><p>AIRO handles everything. We monitor fragrance levels remotely and schedule refills before you run out. Regular maintenance visits every 4-6 weeks include cleaning, software updates, and quality checks. All fragrance refills, technical support, and repairs are our responsibility. Your staff does nothing except occasionally wipe down the exterior if desired.</p></div></div></div></div><div class="w-layout-grid faq11_list"><div class="faq11_accordion"><div data-w-id="7ef8bf84-69da-a74e-b3e4-fc325a0d449e" class="faq11_question"><div class="text-size-medium text-weight-bold">What security features protect against theft or vandalism?</div><div class="faq11_icon-wrapper"><div class="icon-embed-small-2 w-embed"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.3333 15.667V16.3336C25.3333 16.7018 25.0349 17.0003 24.6667 17.0003H17V24.667C17 25.0351 16.7015 25.3336 16.3333 25.3336H15.6667C15.2985 25.3336 15 25.0351 15 24.667V17.0003H7.3333C6.96511 17.0003 6.66663 16.7018 6.66663 16.3336V15.667C6.66663 15.2988 6.96511 15.0003 7.3333 15.0003H15V7.33365C15 6.96546 15.2985 6.66699 15.6667 6.66699H16.3333C16.7015 6.66699 17 6.96546 17 7.33365V15.0003H24.6667C25.0349 15.0003 25.3333 15.2988 25.3333 15.667Z" fill="currentColor"/>
+</svg></div></div></div><div style="width:100%;height:0px" class="faq11_answer"><div class="margin-bottom margin-small"><p>Our dispensers feature shatter-proof construction, integrated alarm systems, and secure mounting. Any tampering triggers an instant alert to both you and our team. The machine is bolted securely and requires specialized tools to remove. All fragrances are locked inside. We also carry comprehensive insurance covering theft, vandalism, and damage.</p></div></div></div><div class="faq11_accordion"><div data-w-id="7ef8bf84-69da-a74e-b3e4-fc325a0d44a8" class="faq11_question"><div class="text-size-medium text-weight-bold">What designer fragrances do you offer?</div><div class="faq11_icon-wrapper"><div class="icon-embed-small-2 w-embed"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.3333 15.667V16.3336C25.3333 16.7018 25.0349 17.0003 24.6667 17.0003H17V24.667C17 25.0351 16.7015 25.3336 16.3333 25.3336H15.6667C15.2985 25.3336 15 25.0351 15 24.667V17.0003H7.3333C6.96511 17.0003 6.66663 16.7018 6.66663 16.3336V15.667C6.66663 15.2988 6.96511 15.0003 7.3333 15.0003H15V7.33365C15 6.96546 15.2985 6.66699 15.6667 6.66699H16.3333C16.7015 6.66699 17 6.96546 17 7.33365V15.0003H24.6667C25.0349 15.0003 25.3333 15.2988 25.3333 15.667Z" fill="currentColor"/>
+</svg></div></div></div><div style="width:100%;height:0px" class="faq11_answer"><div class="margin-bottom margin-small"><p>We stock 5-8 premium designer brands per machine including YSL, Dior, Tom Ford, Armani, Versace, Paco Rabanne, and other luxury labels. Fragrance selection is customized based on your venue type and clientele demographics. We analyze usage data and adjust the lineup quarterly to maximize appeal and revenue. All authentic, all premium.</p></div></div></div><div class="faq11_accordion"><div data-w-id="7ef8bf84-69da-a74e-b3e4-fc325a0d44b2" class="faq11_question"><div class="text-size-medium text-weight-bold">Where should the dispenser be placed?</div><div class="faq11_icon-wrapper"><div class="icon-embed-small-2 w-embed"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.3333 15.667V16.3336C25.3333 16.7018 25.0349 17.0003 24.6667 17.0003H17V24.667C17 25.0351 16.7015 25.3336 16.3333 25.3336H15.6667C15.2985 25.3336 15 25.0351 15 24.667V17.0003H7.3333C6.96511 17.0003 6.66663 16.7018 6.66663 16.3336V15.667C6.66663 15.2988 6.96511 15.0003 7.3333 15.0003H15V7.33365C15 6.96546 15.2985 6.66699 15.6667 6.66699H16.3333C16.7015 6.66699 17 6.96546 17 7.33365V15.0003H24.6667C25.0349 15.0003 25.3333 15.2988 25.3333 15.667Z" fill="currentColor"/>
+</svg></div></div></div><div style="width:100%;height:0px" class="faq11_answer"><div class="margin-bottom margin-small"><p>Restrooms generate the highest usage - guests naturally think about fragrance there, and privacy encourages use. We recommend placement near sinks or mirrors in high-traffic restroom areas. Alternative locations include VIP lounges, coat check areas, or entrance/exit corridors. During our site visit, we'll identify the optimal spot based on your venue layout, foot traffic, and electrical access.</p></div></div></div><div class="faq11_accordion"><div data-w-id="7ef8bf84-69da-a74e-b3e4-fc325a0d44bc" class="faq11_question"><div class="text-size-medium text-weight-bold">What about insurance and liability?</div><div class="faq11_icon-wrapper"><div class="icon-embed-small-2 w-embed"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.3333 15.667V16.3336C25.3333 16.7018 25.0349 17.0003 24.6667 17.0003H17V24.667C17 25.0351 16.7015 25.3336 16.3333 25.3336H15.6667C15.2985 25.3336 15 25.0351 15 24.667V17.0003H7.3333C6.96511 17.0003 6.66663 16.7018 6.66663 16.3336V15.667C6.66663 15.2988 6.96511 15.0003 7.3333 15.0003H15V7.33365C15 6.96546 15.2985 6.66699 15.6667 6.66699H16.3333C16.7015 6.66699 17 6.96546 17 7.33365V15.0003H24.6667C25.0349 15.0003 25.3333 15.2988 25.3333 15.667Z" fill="currentColor"/>
+</svg></div></div></div><div style="width:100%;height:0px" class="faq11_answer"><div class="margin-bottom margin-small"><p>AIRO carries comprehensive insurance covering the equipment, inventory, liability, and any incidents related to the dispenser. You have zero liability for the machine or its operation. Our insurance covers theft, vandalism, malfunction, and any theoretical customer issues. We provide certificates of insurance upon request for your records or landlord requirements.</p></div></div></div><div class="faq11_accordion"><div data-w-id="7ef8bf84-69da-a74e-b3e4-fc325a0d44c6" class="faq11_question"><div class="text-size-medium text-weight-bold">Still have a question?</div><div class="faq11_icon-wrapper"><div class="icon-embed-small-2 w-embed"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.3333 15.667V16.3336C25.3333 16.7018 25.0349 17.0003 24.6667 17.0003H17V24.667C17 25.0351 16.7015 25.3336 16.3333 25.3336H15.6667C15.2985 25.3336 15 25.0351 15 24.667V17.0003H7.3333C6.96511 17.0003 6.66663 16.7018 6.66663 16.3336V15.667C6.66663 15.2988 6.96511 15.0003 7.3333 15.0003H15V7.33365C15 6.96546 15.2985 6.66699 15.6667 6.66699H16.3333C16.7015 6.66699 17 6.96546 17 7.33365V15.0003H24.6667C25.0349 15.0003 25.3333 15.2988 25.3333 15.667Z" fill="currentColor"/>
+</svg></div></div></div><div style="width:100%;height:0px" class="faq11_answer"><div class="margin-bottom margin-small"><p>Please <a href="#contact" class="text-link">contact us here</a> and we&#x27;ll get back to you with a response as soon as we can. </p></div></div></div></div></div></div></div></div></section><section id="contact" class="section_contact5"><div class="padding-global relative-2"><div class="container-large"><div class="padding-section-large"><div class="w-layout-grid faq6_component"><div class="contact5_content"><div class="margin-bottom margin-medium"><div class="contact5_heading-wrapper"><div class="margin-bottom margin-xsmall"><h2><span class="text-gradient-primary rotated">Unlock your new revenue stream</span> with AIRO Solutions </h2></div><div class="margin-bottom margin-small"><p class="text-size-medium">Ready to generate passive revenue with zero investment? Join London's top nightclubs and luxury venues already earning with AIRO. Submit the form below or schedule a call to discuss your venue's potential.<br/></p></div><div class="margin-bottom margin-small"><div class="list-wrapper"><div class="list"><div class="icon_1x1-small contact-tick w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg></div><p>No costs - <strong>just profits</strong></p></div><div class="list"><div class="icon_1x1-small contact-tick w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg></div><p><strong>No maintenance headaches</strong> - we handle it all</p></div><div class="list"><div class="icon_1x1-small contact-tick w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg></div><p>No missed crowds - <strong>attract more visitors</strong></p></div></div></div></div></div><div class="contact5_contact-list"><a id="w-node-_0453fff7-6a75-cb47-3213-5cac4404a9dd-b6d231c5" href="https://calendly.com/michael-airo/30min" target="_blank" class="contact5_item w-inline-block"><div class="contact5_icon-wrapper"><div class="icon-embed-xsmall calendly w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="338" height="345" viewBox="0 0 338 345" fill="none">
+<path d="M231.539 223.235C220.609 232.935 206.959 245.005 182.209 245.005H167.409C149.499 245.005 133.209 238.495 121.549 226.695C110.159 215.165 103.889 199.385 103.889 182.255V162.005C103.889 144.875 110.159 129.095 121.549 117.565C133.209 105.765 149.499 99.2654 167.409 99.2654H182.209C206.989 99.2654 220.609 111.325 231.539 121.025C242.889 131.025 252.679 139.765 278.789 139.765C282.771 139.764 286.747 139.447 290.679 138.815L290.589 138.585C289.025 134.702 287.191 130.932 285.099 127.305L267.649 97.0754C259.78 83.4477 248.462 72.1314 234.834 64.2638C221.205 56.3963 205.746 52.2547 190.009 52.2554H155.099C139.363 52.2547 123.903 56.3963 110.275 64.2638C96.646 72.1314 85.3283 83.4477 77.4592 97.0754L60.0092 127.305C52.1427 140.935 48.0015 156.394 48.0015 172.13C48.0015 187.867 52.1427 203.326 60.0092 216.955L77.4592 247.185C85.3283 260.813 96.646 272.129 110.275 279.997C123.903 287.864 139.363 292.006 155.099 292.005H190.009C205.746 292.006 221.205 287.864 234.834 279.997C248.462 272.129 259.78 260.813 267.649 247.185L285.099 217.005C287.191 213.378 289.025 209.609 290.589 205.725L290.679 205.505C286.749 204.853 282.773 204.518 278.789 204.505C252.679 204.505 242.889 213.195 231.539 223.245" fill="currentColor"/>
+<path d="M182.209 117.615H167.409C140.149 117.615 122.239 137.085 122.239 162.005V182.255C122.239 207.175 140.149 226.645 167.409 226.645H182.209C221.929 226.645 218.809 186.145 278.789 186.145C284.472 186.139 290.143 186.661 295.729 187.705C297.549 177.402 297.549 166.859 295.729 156.555C290.142 157.595 284.472 158.117 278.789 158.115C218.789 158.115 221.929 117.615 182.209 117.615Z" fill="currentColor"/>
+<path d="M330.189 202.505C319.975 195.024 308.196 189.96 295.739 187.695C295.739 187.805 295.739 187.895 295.739 187.995C294.667 193.966 292.992 199.813 290.739 205.445C301.029 207.039 310.792 211.06 319.219 217.175C319.219 217.255 319.169 217.355 319.139 217.445C308.293 252.567 285.208 282.634 254.079 302.182C222.949 321.731 185.84 329.466 149.493 323.981C113.146 318.497 79.9719 300.156 55.9971 272.292C32.0222 244.428 18.8372 208.889 18.8372 172.13C18.8372 135.372 32.0222 99.8325 55.9971 71.9684C79.9719 44.1044 113.146 25.7642 149.493 20.2795C185.84 14.7948 222.949 22.5294 254.079 42.0783C285.208 61.6272 308.293 91.6935 319.139 126.815C319.139 126.905 319.189 127.005 319.219 127.085C310.793 133.202 301.03 137.22 290.739 138.805C292.989 144.446 294.664 150.299 295.739 156.275C295.734 156.369 295.734 156.462 295.739 156.555C308.195 154.294 319.975 149.233 330.189 141.755C340.009 134.485 338.109 126.275 336.619 121.415C324.478 82.0365 298.613 48.32 263.723 26.3926C228.833 4.46523 187.235 -4.21782 146.486 1.9213C105.738 8.06041 68.5445 28.6143 41.6639 59.848C14.7834 91.0816 0 130.922 0 172.13C0 213.338 14.7834 253.179 41.6639 284.413C68.5445 315.647 105.738 336.2 146.486 342.34C187.235 348.479 228.833 339.796 263.723 317.868C298.613 295.941 324.478 262.224 336.619 222.845C338.109 217.985 340.009 209.775 330.189 202.505Z" fill="currentColor"/>
+<path d="M290.679 138.805C286.749 139.458 282.773 139.793 278.789 139.805C252.679 139.805 242.889 131.115 231.549 121.065C220.609 111.365 206.989 99.2954 182.209 99.2954H167.409C149.489 99.2954 133.209 105.805 121.549 117.605C110.159 129.135 103.889 144.915 103.889 162.045V182.295C103.889 199.425 110.159 215.205 121.549 226.735C133.209 238.535 149.489 245.035 167.409 245.035H182.209C206.989 245.035 220.609 232.975 231.549 223.275C242.889 213.275 252.679 204.535 278.789 204.535C282.772 204.536 286.748 204.854 290.679 205.485C292.936 199.854 294.612 194.007 295.679 188.035C295.685 187.935 295.685 187.835 295.679 187.735C290.092 186.7 284.422 186.181 278.739 186.185C218.739 186.185 221.879 226.695 182.159 226.695H167.359C140.099 226.695 122.189 207.215 122.189 182.295V162.005C122.189 137.085 140.099 117.615 167.359 117.615H182.159C221.879 117.615 218.759 158.105 278.739 158.105C284.422 158.115 290.093 157.596 295.679 156.555C295.679 156.465 295.679 156.375 295.679 156.275C294.604 150.299 292.929 144.446 290.679 138.805Z" fill="transparent"/>
+<path d="M290.679 138.805C286.749 139.458 282.773 139.793 278.789 139.805C252.679 139.805 242.889 131.115 231.549 121.065C220.609 111.365 206.989 99.2954 182.209 99.2954H167.409C149.489 99.2954 133.209 105.805 121.549 117.605C110.159 129.135 103.889 144.915 103.889 162.045V182.295C103.889 199.425 110.159 215.205 121.549 226.735C133.209 238.535 149.489 245.035 167.409 245.035H182.209C206.989 245.035 220.609 232.975 231.549 223.275C242.889 213.275 252.679 204.535 278.789 204.535C282.772 204.536 286.748 204.854 290.679 205.485C292.936 199.854 294.612 194.007 295.679 188.035C295.685 187.935 295.685 187.835 295.679 187.735C290.092 186.7 284.422 186.181 278.739 186.185C218.739 186.185 221.879 226.695 182.159 226.695H167.359C140.099 226.695 122.189 207.215 122.189 182.295V162.005C122.189 137.085 140.099 117.615 167.359 117.615H182.159C221.879 117.615 218.759 158.105 278.739 158.105C284.422 158.115 290.093 157.596 295.679 156.555C295.679 156.465 295.679 156.375 295.679 156.275C294.604 150.299 292.929 144.446 290.679 138.805Z" fill="transparent"/>
+</svg></div></div><div>Book a call with AIRO Solutions</div></a></div></div><div class="contact5_form-block w-form"><form id="wf-form-Contact-5-Form" name="wf-form-Contact-5-Form" data-name="Contact 5 Form" method="get" class="contact5_form" data-wf-page-id="66ae64b3b5c7378eb6d231c5" data-wf-element-id="0453fff7-6a75-cb47-3213-5cac4404a9e8"><div class="form-grid"><div class="form_field-wrapper"><label for="First-name" class="form_field-label">First name</label><input class="form_input w-input" maxlength="256" name="First-name" data-name="First name" placeholder="John" type="text" id="First-name" required=""/></div><div class="form_field-wrapper"><label for="Last-Name" class="form_field-label">Last name</label><input class="form_input w-input" maxlength="256" name="Last-Name" data-name="Last Name" placeholder="Brown" type="text" id="Last-Name" required=""/></div></div><div class="form-grid"><div class="form_field-wrapper"><label for="Email" class="form_field-label">Email</label><input class="form_input w-input" maxlength="256" name="Email" data-name="Email" placeholder="john@brown.co.uk" type="email" id="Email" required=""/></div><div class="form_field-wrapper"><label for="Phone-number" class="form_field-label">Phone Number</label><input class="form_input w-input" maxlength="256" name="Phone-number" data-name="Phone number" placeholder="07400000000" type="tel" id="Phone-number" required=""/></div></div><div class="form-grid"><div class="form_field-wrapper"><label for="Venue-Name" class="form_field-label">Venue name</label><input class="form_input w-input" maxlength="256" name="Venue-Name" data-name="Venue Name" placeholder="St George&#x27;s Hall" type="text" id="Venue-Name" required=""/></div><div class="form_field-wrapper"><label for="Venue-Location" class="form_field-label">Venue location</label><input class="form_input w-input" maxlength="256" name="Venue-Location" data-name="Venue Location" placeholder="St George&#x27;s Pl,  L1 1JJ" type="text" id="Venue-Location" required=""/></div></div><div class="form_field-wrapper"><label for="Message" class="form_field-label">Message</label><textarea placeholder="Hello AIRO Solutions ..." maxlength="5000" id="Message" name="Message" data-name="Message" required="" class="form_input is-text-area w-input"></textarea></div><input type="submit" data-wait="Please wait..." id="w-node-_0453fff7-6a75-cb47-3213-5cac4404a9fc-b6d231c5" class="button w-button" value="Contact Us"/></form><div class="success-message w-form-done"><div class="success-text">Thank you for getting in touch with us! We&#x27;ll get back to you as soon as we can</div></div><div class="error-message w-form-fail"><div class="error-text">Oops! Something went wrong while submitting the form. Please try again</div></div></div></div></div></div></div></section></main><footer class="footer1_component"><div class="padding-global"><div class="container-large"><div class="padding-vertical padding-xxlarge"><div class="padding-bottom padding-xxlarge"><div class="w-layout-grid footer1_top-wrapper"><div class="footer1_left-wrapper"><div class="margin-bottom margin-xsmall"><a href="/" aria-current="page" class="footer1_logo-link w-nav-brand w--current"><img src="unnamed (25) (1) (1) (1) (1).png" loading="lazy" alt="AIRO Solutions logo in white"/></a></div><div class="footer-socials-link"><a href="https://calendly.com/michael-airo/30min" target="_blank" class="footer-social-link w-inline-block"><div class="icon-embed-xsmall footer calendly w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="338" height="345" viewBox="0 0 338 345" fill="none">
+<path d="M231.539 223.235C220.609 232.935 206.959 245.005 182.209 245.005H167.409C149.499 245.005 133.209 238.495 121.549 226.695C110.159 215.165 103.889 199.385 103.889 182.255V162.005C103.889 144.875 110.159 129.095 121.549 117.565C133.209 105.765 149.499 99.2654 167.409 99.2654H182.209C206.989 99.2654 220.609 111.325 231.539 121.025C242.889 131.025 252.679 139.765 278.789 139.765C282.771 139.764 286.747 139.447 290.679 138.815L290.589 138.585C289.025 134.702 287.191 130.932 285.099 127.305L267.649 97.0754C259.78 83.4477 248.462 72.1314 234.834 64.2638C221.205 56.3963 205.746 52.2547 190.009 52.2554H155.099C139.363 52.2547 123.903 56.3963 110.275 64.2638C96.646 72.1314 85.3283 83.4477 77.4592 97.0754L60.0092 127.305C52.1427 140.935 48.0015 156.394 48.0015 172.13C48.0015 187.867 52.1427 203.326 60.0092 216.955L77.4592 247.185C85.3283 260.813 96.646 272.129 110.275 279.997C123.903 287.864 139.363 292.006 155.099 292.005H190.009C205.746 292.006 221.205 287.864 234.834 279.997C248.462 272.129 259.78 260.813 267.649 247.185L285.099 217.005C287.191 213.378 289.025 209.609 290.589 205.725L290.679 205.505C286.749 204.853 282.773 204.518 278.789 204.505C252.679 204.505 242.889 213.195 231.539 223.245" fill="currentColor"/>
+<path d="M182.209 117.615H167.409C140.149 117.615 122.239 137.085 122.239 162.005V182.255C122.239 207.175 140.149 226.645 167.409 226.645H182.209C221.929 226.645 218.809 186.145 278.789 186.145C284.472 186.139 290.143 186.661 295.729 187.705C297.549 177.402 297.549 166.859 295.729 156.555C290.142 157.595 284.472 158.117 278.789 158.115C218.789 158.115 221.929 117.615 182.209 117.615Z" fill="currentColor"/>
+<path d="M330.189 202.505C319.975 195.024 308.196 189.96 295.739 187.695C295.739 187.805 295.739 187.895 295.739 187.995C294.667 193.966 292.992 199.813 290.739 205.445C301.029 207.039 310.792 211.06 319.219 217.175C319.219 217.255 319.169 217.355 319.139 217.445C308.293 252.567 285.208 282.634 254.079 302.182C222.949 321.731 185.84 329.466 149.493 323.981C113.146 318.497 79.9719 300.156 55.9971 272.292C32.0222 244.428 18.8372 208.889 18.8372 172.13C18.8372 135.372 32.0222 99.8325 55.9971 71.9684C79.9719 44.1044 113.146 25.7642 149.493 20.2795C185.84 14.7948 222.949 22.5294 254.079 42.0783C285.208 61.6272 308.293 91.6935 319.139 126.815C319.139 126.905 319.189 127.005 319.219 127.085C310.793 133.202 301.03 137.22 290.739 138.805C292.989 144.446 294.664 150.299 295.739 156.275C295.734 156.369 295.734 156.462 295.739 156.555C308.195 154.294 319.975 149.233 330.189 141.755C340.009 134.485 338.109 126.275 336.619 121.415C324.478 82.0365 298.613 48.32 263.723 26.3926C228.833 4.46523 187.235 -4.21782 146.486 1.9213C105.738 8.06041 68.5445 28.6143 41.6639 59.848C14.7834 91.0816 0 130.922 0 172.13C0 213.338 14.7834 253.179 41.6639 284.413C68.5445 315.647 105.738 336.2 146.486 342.34C187.235 348.479 228.833 339.796 263.723 317.868C298.613 295.941 324.478 262.224 336.619 222.845C338.109 217.985 340.009 209.775 330.189 202.505Z" fill="currentColor"/>
+<path d="M290.679 138.805C286.749 139.458 282.773 139.793 278.789 139.805C252.679 139.805 242.889 131.115 231.549 121.065C220.609 111.365 206.989 99.2954 182.209 99.2954H167.409C149.489 99.2954 133.209 105.805 121.549 117.605C110.159 129.135 103.889 144.915 103.889 162.045V182.295C103.889 199.425 110.159 215.205 121.549 226.735C133.209 238.535 149.489 245.035 167.409 245.035H182.209C206.989 245.035 220.609 232.975 231.549 223.275C242.889 213.275 252.679 204.535 278.789 204.535C282.772 204.536 286.748 204.854 290.679 205.485C292.936 199.854 294.612 194.007 295.679 188.035C295.685 187.935 295.685 187.835 295.679 187.735C290.092 186.7 284.422 186.181 278.739 186.185C218.739 186.185 221.879 226.695 182.159 226.695H167.359C140.099 226.695 122.189 207.215 122.189 182.295V162.005C122.189 137.085 140.099 117.615 167.359 117.615H182.159C221.879 117.615 218.759 158.105 278.739 158.105C284.422 158.115 290.093 157.596 295.679 156.555C295.679 156.465 295.679 156.375 295.679 156.275C294.604 150.299 292.929 144.446 290.679 138.805Z" fill="transparent"/>
+<path d="M290.679 138.805C286.749 139.458 282.773 139.793 278.789 139.805C252.679 139.805 242.889 131.115 231.549 121.065C220.609 111.365 206.989 99.2954 182.209 99.2954H167.409C149.489 99.2954 133.209 105.805 121.549 117.605C110.159 129.135 103.889 144.915 103.889 162.045V182.295C103.889 199.425 110.159 215.205 121.549 226.735C133.209 238.535 149.489 245.035 167.409 245.035H182.209C206.989 245.035 220.609 232.975 231.549 223.275C242.889 213.275 252.679 204.535 278.789 204.535C282.772 204.536 286.748 204.854 290.679 205.485C292.936 199.854 294.612 194.007 295.679 188.035C295.685 187.935 295.685 187.835 295.679 187.735C290.092 186.7 284.422 186.181 278.739 186.185C218.739 186.185 221.879 226.695 182.159 226.695H167.359C140.099 226.695 122.189 207.215 122.189 182.295V162.005C122.189 137.085 140.099 117.615 167.359 117.615H182.159C221.879 117.615 218.759 158.105 278.739 158.105C284.422 158.115 290.093 157.596 295.679 156.555C295.679 156.465 295.679 156.375 295.679 156.275C294.604 150.299 292.929 144.446 290.679 138.805Z" fill="transparent"/>
+</svg></div></a></div></div><div class="w-layout-grid footer1_menu-wrapper"><div class="footer1_link-list"><div class="margin-bottom margin-xsmall"><div class="footer-header">Discover AIRO Solutions</div></div><a href="#how-it-works" class="footer1_link">How it works</a><a href="#the-machine" class="footer1_link">Discover the machine</a><a href="#process" class="footer1_link">Process</a><a href="#safety" class="footer1_link">Safety</a><a href="#" class="footer1_link">Testimonials</a></div><div class="footer1_link-list"><div class="margin-bottom margin-xsmall mobile-hidden"><div class="footer-header opacity-0">Discover AIRO Solutions</div></div><a href="#why-partner" class="footer1_link">Why partner with AIRO Solutions</a><a href="#about" class="footer1_link">About us</a><a href="#faqs" class="footer1_link">FAQs</a><a href="#contact" class="footer1_link">Contact</a></div></div></div></div><div class="line-divider"></div><div class="padding-top padding-medium"><div class="footer1_bottom-wrapper"><div class="footer1_credit-text">© 2024 AIRO Solutions. All rights reserved.</div></div></div></div></div></div></footer></div><script src="jquery.min.js" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="webflow.js" type="text/javascript"></script></body></html>
