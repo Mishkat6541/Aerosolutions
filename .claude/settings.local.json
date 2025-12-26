@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "Bash(echo \"AIRO Solutions Content Rewrite - COMPLETE\n\nAll text content in sprayzie-clone.html has been successfully rewritten for AIRO Solutions.\n\nFILE LOCATION: \\\\\\\\wsl.localhost\\\\Ubuntu\\\\home\\\\mish\\\\Perfume\\\\sprayzie-clone.html\nBACKUP CREATED: \\\\\\\\wsl.localhost\\\\Ubuntu\\\\home\\\\mish\\\\Perfume\\\\sprayzie-clone.html.backup\n\nSECTIONS UPDATED:\n✓ Hero Section - New headline and value proposition\n✓ How It Works - 3-step process rewritten\n✓ Product Features - Machine security and features\n✓ Partnership Model - Installation, maintenance, profit split\n✓ Why AIRO - Key differentiators\n✓ About Us - Company story and mission\n✓ Testimonials - 7 new testimonials created\n✓ FAQ Section - 9 comprehensive FAQs\n✓ Call-to-Action - Final conversion section\n\nKEY MESSAGING HIGHLIGHTS:\n- Zero upfront costs, 50/50 revenue split\n- Designer brands: YSL, Dior, Tom Ford, Armani\n- Nayax contactless payment system\n- Shatter-proof construction with integrated alarms\n- Complete maintenance and support by AIRO\n- Target: Nightclubs, luxury lounges, VIP venues\n- Revenue: £200-800/month average\n- 5-8 fragrance options with LED customization\n\nAll content is now AIRO-specific, professional, and persuasive.\")"
+    ]
+  }
+}

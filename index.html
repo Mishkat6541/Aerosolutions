@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIRO Solutions | Premium Fragrance Dispensers for Luxury Venues</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           ROOT VARIABLES & RESET
+           ======================================== */
+        :root {
+            --primary-navy: #6b21a8;
+            --accent-blue: #a855f7;
+            --bg-white: #ffffff;
+            --bg-light-gray: #faf5ff;
+            --text-dark: #0f172a;
+            --text-gray: #64748b;
+            --border-color: #e9d5ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--accent-blue);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #9333ea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-links .btn {
+            margin-left: 10px;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-dark);
+            transition: 0.3s;
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        #hero {
+            margin-top: 80px;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .hero-metric {
+            background-color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            display: inline-block;
+        }
+
+        .hero-metric strong {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+        }
+
+        /* ========================================
+           HOW IT WORKS SECTION
+           ======================================== */
+        #how-it-works {
+            background-color: var(--bg-white);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 40px 30px;
+            background-color: var(--bg-light-gray);
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .step-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           PRODUCT SECTION
+           ======================================== */
+        #product {
+            background-color: var(--bg-light-gray);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .product-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-details h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .product-details p {
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .product-features li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .product-features li:last-child {
+            border-bottom: none;
+        }
+
+        .product-features li::before {
+            content: "✓";
+            color: var(--accent-blue);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* ========================================
+           PARTNERSHIP MODEL SECTION
+           ======================================== */
+        #partnership {
+            background-color: var(--bg-white);
+        }
+
+        .partnership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .partnership-card {
+            background-color: var(--bg-light-gray);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .partnership-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .partnership-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .partnership-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* ========================================
+           WHY AIRO SECTION
+           ======================================== */
+        #why-airo {
+            background-color: var(--primary-navy);
+            color: white;
+        }
+
+        #why-airo .section-header h2,
+        #why-airo .section-header p {
+            color: white;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .why-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .why-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .why-card p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           ABOUT/FOUNDERS SECTION
+           ======================================== */
+        #about {
+            background-color: var(--bg-light-gray);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* ========================================
+           TESTIMONIALS SECTION
+           ======================================== */
+        #testimonials {
+            background-color: #f3e8ff;
+            padding: 80px 0;
+        }
+
+        .testimonials-carousel {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding: 40px 60px;
+        }
+
+        .testimonial {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        .testimonial.active {
+            display: block;
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .testimonial-role {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(168, 85, 247, 0.3);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--accent-blue);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========================================
+           FAQ SECTION
+           ======================================== */
+        #faq {
+            background-color: var(--bg-white);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--bg-light-gray);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f3e8ff;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 25px 20px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           CONTACT SECTION
+           ======================================== */
+        #contact {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #9333ea 100%);
+            color: white;
+            padding: 100px 0;
+        }
+
+        #contact .section-header h2,
+        #contact .section-header p {
+            color: white;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+        }
+
+        .form-message.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .form-message.show {
+            display: block;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        footer {
+            background-color: #0f172a;
+            color: white;
+            padding: 50px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+           ======================================== */
+        @media (max-width: 991px) {
+            .steps-grid,
+            .partnership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 30px 25px;
+            }
+        }
+
+        /* ========================================
+           ANIMATION UTILITIES
+           ======================================== */
+        .animate-text {
+            opacity: 0;
+        }
+
+        .animate-text.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="#hero">
+                        <img src="WhatsApp Image 2025-11-29 at 17.02.18_487c7d6b.jpg" alt="AIRO Solutions Logo">
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#product">The Machine</a>
+                    <a href="#partnership">Process</a>
+                    <a href="#why-airo">Why AIRO</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#contact" class="btn">Book a Call</a>
+                </div>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-text">Select. Pay. Spray. That Simple.</h1>
+                <p class="subtitle">Transform your venue with premium fragrance dispensers. Zero upfront costs, instant revenue share, and an unforgettable amenity for your guests.</p>
+                <div class="hero-cta">
+                    <a href="#product" class="btn">Discover The Machine</a>
+                    <a href="#contact" class="btn btn-secondary">Partner With Us</a>
+                </div>
+                <div class="hero-metric">
+                    <strong>£23,860</strong> average venue earnings over three years
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-text">How It Works</h2>
+                <p>A premium fragrance experience in three simple steps</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <span class="step-icon">👆</span>
+                    <div class="step-number">01</div>
+                    <h3>Select</h3>
+                    <p>Browse our curated collection of designer fragrances on the sleek touchscreen interface. From YSL to Dior, choose your signature scent.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-icon">💳</span>
+                    <div class="step-number">02</div>
+                    <h3>Tap</h3>
+                    <p>Contactless payment via our integrated Nayax system. Quick, secure, and seamless - no cash, no hassle.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-icon">✨</span>
+                    <div class="step-number">03</div>
+                    <h3>Spray</h3>
+                    <p>Receive the perfect amount of premium fragrance. Step back into the night feeling refreshed and confident.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT SHOWCASE -->
+    <section id="product" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-text">Discover The Machine</h2>
+                <p>State-of-the-art design meets luxury fragrance</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-image">
+                    <img src="unnamed (4).jpg" alt="AIRO Solutions Premium Fragrance Dispenser">
+                </div>
+                <div class="product-details">
+                    <h3>Premium Engineering for Luxury Venues</h3>
+                    <p>The AIRO dispenser is designed specifically for high-end nightclubs, VIP lounges, and luxury restrooms. It's not just a machine - it's a statement piece that elevates your venue's experience.</p>
+                    <p>Every detail has been carefully crafted to ensure reliability, security, and an unparalleled user experience.</p>
+                    <ul class="product-features">
+                        <li><strong>Shatter-Proof Construction:</strong> Military-grade materials ensure durability in high-traffic environments</li>
+                        <li><strong>Integrated Security System:</strong> Built-in alarm with remote monitoring and instant alerts</li>
+                        <li><strong>Intuitive Touchscreen:</strong> High-definition display guides users through selection effortlessly</li>
+                        <li><strong>Designer Fragrances:</strong> Curated selection of 5+ premium brands including YSL, Dior, and more</li>
+                        <li><strong>LED Customization:</strong> 20+ color options to match your venue's aesthetic</li>
+                        <li><strong>Nayax Payment System:</strong> Industry-leading contactless payment technology</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERSHIP MODEL -->
+    <section id="partnership" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-text">Our Partnership Process</h2>
+                <p>We handle everything so you can focus on running your venue</p>
+            </div>
+            <div class="partnership-grid">
+                <div class="partnership-card">
+                    <span class="partnership-icon">🔧</span>
+                    <h3>Seamless Installation</h3>
+                    <p>Professional setup with full safety inspection. We work around your schedule to minimize disruption and ensure perfect placement for maximum usage.</p>
+                </div>
+                <div class="partnership-card">
+                    <span class="partnership-icon">🛠️</span>
+                    <h3>Complete Maintenance</h3>
+                    <p>AIRO handles all refills, repairs, and monitoring. You never have to worry about inventory, technical issues, or maintenance schedules.</p>
+                </div>
+                <div class="partnership-card">
+                    <span class="partnership-icon">💰</span>
+                    <h3>Fair Profit Split</h3>
+                    <p>50/50 revenue share partnership structure. Your success is our success. No hidden fees, no upfront costs - just transparent profit sharing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY AIRO -->
+    <section id="why-airo" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-text">Why AIRO Is Your Ideal Partner</h2>
+                <p>We're more than a vendor - we're your partner in success</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <h3>Complete Transparency</h3>
+                    <p>Monthly dashboards with real-time analytics. Track usage, revenue, popular fragrances, and peak times. Full visibility into every transaction with detailed reporting.</p>
+                </div>
+                <div class="why-card">
+                    <h3>Fair Partnership Structure</h3>
+                    <p>We believe in win-win relationships. Our 50/50 split means we're incentivized to maximize your revenue. Your success directly drives our success.</p>
+                </div>
+                <div class="why-card">
+                    <h3>Premium Quality</h3>
+                    <p>We stock only authentic designer fragrances from luxury brands your guests know and love. No cheap imitations - just the real deal.</p>
+                </div>
+                <div class="why-card">
+                    <h3>Unmatched Dedication</h3>
+                    <p>Under promise, over deliver. That's our philosophy. We're committed to providing exceptional service, rapid response times, and constant optimization to maximize your returns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-text">About AIRO Solutions</h2>
+                <p>Built by entrepreneurs who understand the hospitality industry</p>
+            </div>
+            <div class="about-content">
+                <p>AIRO Solutions was founded by experienced hospitality entrepreneurs who saw an opportunity to bring luxury amenities to high-end venues. With backgrounds in nightlife, technology, and customer experience, our team understands what it takes to create memorable guest experiences.</p>
+                <p>We're committed to a safety-first approach in everything we do - from product design and installation to ongoing maintenance and support. Our machines are fully insured, regularly inspected, and engineered to the highest standards.</p>
+                <p>Our vision is simple: make premium fragrances accessible in the moments when people need them most - without the hassle of carrying bottles or worrying about spills. We're turning restrooms into revenue centers and creating win-win partnerships with the best venues in the country.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-text">What Venue Owners Say</h2>
+            </div>
+            <div class="testimonials-carousel">
+                <div class="testimonial active">
+                    <p class="testimonial-text">"The AIRO dispenser has been a fantastic addition to our VIP lounge. Guests love the convenience, and we love the extra revenue stream with zero effort on our part."</p>
+                    <p class="testimonial-author">Sarah Mitchell</p>
+                    <p class="testimonial-role">Owner, Velvet Nightclub</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Installation was seamless and the monthly reports are incredibly detailed. It's amazing how something so simple can add real value to our venue."</p>
+                    <p class="testimonial-author">James Rodriguez</p>
+                    <p class="testimonial-role">General Manager, The Grand Hotel</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Our guests are always impressed by the quality of fragrances available. It's become a talking point and adds to our luxury positioning."</p>
+                    <p class="testimonial-author">Emma Thompson</p>
+                    <p class="testimonial-role">Director, Prestige Lounge</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"The AIRO team is incredibly responsive. Any questions or issues are handled immediately. It's true partnership, not just a transaction."</p>
+                    <p class="testimonial-author">Michael Chen</p>
+                    <p class="testimonial-role">Owner, Eclipse Bar</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"We were skeptical at first, but the numbers speak for themselves. It's pure profit for us with absolutely no overhead or management required."</p>
+                    <p class="testimonial-author">Lisa Anderson</p>
+                    <p class="testimonial-role">Operations Manager, Luxe Events</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"The machine looks sleek and modern, fitting perfectly with our high-end aesthetic. It's functional art that also generates revenue."</p>
+                    <p class="testimonial-author">David Williams</p>
+                    <p class="testimonial-role">Owner, Metropolitan Club</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"AIRO delivers on their promises. The maintenance is handled perfectly, the dashboards are clear, and our guests genuinely appreciate the service."</p>
+                    <p class="testimonial-author">Rachel Green</p>
+                    <p class="testimonial-role">Manager, Royale Lounge</p>
+                </div>
+                <div class="carousel-dots">
+                    <span class="carousel-dot active" data-index="0"></span>
+                    <span class="carousel-dot" data-index="1"></span>
+                    <span class="carousel-dot" data-index="2"></span>
+                    <span class="carousel-dot" data-index="3"></span>
+                    <span class="carousel-dot" data-index="4"></span>
+                    <span class="carousel-dot" data-index="5"></span>
+                    <span class="carousel-dot" data-index="6"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-text">Frequently Asked Questions</h2>
+                <p>Everything you need to know about partnering with AIRO</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">What are the operating costs for the machine?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            The only operating cost is electricity, which is minimal (approximately £2-3 per month). AIRO handles all fragrance refills, maintenance, repairs, and monitoring at no cost to you. There are no upfront fees, monthly fees, or hidden charges.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What security features does the machine have?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Every AIRO dispenser includes an integrated alarm system with remote monitoring. If tampering is detected, we receive instant alerts and can take immediate action. The construction is shatter-proof and designed to withstand high-traffic environments. All units are also fully insured.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How much fragrance does each spray dispense?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our default setting dispenses 0.13ml per spray, which is the perfect amount for a quality application without waste. This ensures optimal fragrance experience while maximizing value for both the user and your venue. Settings can be adjusted based on specific needs.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can we adjust pricing or customize the fragrances?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely! We work with each venue to determine optimal pricing based on your clientele and market. Fragrance selection is also customizable - we'll curate a collection that aligns with your venue's brand and guest preferences. LED colors can also be customized to match your aesthetic.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Who is responsible for repairs and liability?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            AIRO handles all maintenance, repairs, and technical issues. If something goes wrong, we fix it - at no cost to you. All machines are fully insured and we carry comprehensive liability coverage. Your venue has zero risk or responsibility for equipment issues.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How are fragrances selected and replaced?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We monitor usage data to track which fragrances are most popular and ensure optimal inventory. Refills are handled proactively based on usage patterns - you'll never run out. We work with you to adjust the fragrance lineup based on seasonal trends and customer feedback.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Where should the machine be placed for best results?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Ideal placements include restroom corridors, VIP lounge areas, or high-traffic areas near exits. We provide consultation on optimal placement based on your venue layout to maximize visibility and usage. The machine requires a standard power outlet and works well in most restroom or corridor environments.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is the machine covered by insurance?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, all AIRO dispensers are fully insured for theft, damage, and liability. We carry comprehensive coverage so your venue is completely protected. In the unlikely event of any incident, AIRO handles all claims and replacements.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-text">Ready to Partner With AIRO?</h2>
+                <p>Join the venues already earning extra revenue with zero effort</p>
+            </div>
+            <div class="contact-form">
+                <div class="form-message" id="formMessage"></div>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="venue">Venue Name *</label>
+                        <input type="text" id="venue" name="venue" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Tell us about your venue</label>
+                        <textarea id="message" name="message" placeholder="Venue type, location, estimated foot traffic, etc."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem;">Get Started - Zero Upfront Costs</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <img src="WhatsApp Image 2025-11-29 at 17.02.18_487c7d6b.jpg" alt="AIRO Solutions">
+                    </div>
+                    <p class="footer-description">Premium fragrance dispensers for luxury venues. Transform your restrooms into revenue centers with zero upfront investment.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#product">The Machine</a></li>
+                        <li><a href="#partnership">Partnership</a></li>
+                        <li><a href="#why-airo">Why AIRO</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AIRO Solutions. All rights reserved. | Designed for Premium Venues.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP LIBRARIES -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- CUSTOM JAVASCRIPT -->
+    <script>
+        // ========================================
+        // SMOOTH SCROLL NAVIGATION
+        // ========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ========================================
+        // GSAP SCROLL ANIMATIONS
+        // ========================================
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate text elements on scroll
+        document.querySelectorAll('.animate-text').forEach(element => {
+            const text = element.textContent;
+            const words = text.split(' ');
+            element.innerHTML = words.map(word => `<span style="display: inline-block; opacity: 0;">${word}</span>`).join(' ');
+
+            const wordElements = element.querySelectorAll('span');
+
+            gsap.to(wordElements, {
+                opacity: 1,
+                duration: 0.5,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: element,
+                    start: window.innerWidth <= 767 ? 'top 85%' : 'top 70%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // ========================================
+        // TESTIMONIAL CAROUSEL
+        // ========================================
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function showTestimonial(index) {
+            testimonials.forEach(t => t.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+
+            testimonials[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentTestimonial = index;
+        }
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            const next = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(next);
+        }, 5000);
+
+        // Dot click handlers
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.getAttribute('data-index'));
+                showTestimonial(index);
+            });
+        });
+
+        // ========================================
+        // FAQ ACCORDION
+        // ========================================
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const wasActive = faqItem.classList.contains('active');
+
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // Open clicked item if it wasn't active
+                if (!wasActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // ========================================
+        // CONTACT FORM VALIDATION
+        // ========================================
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const venue = document.getElementById('venue').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Basic validation
+            if (!name || !email || !phone || !venue) {
+                showMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Success message (in production, this would send to backend)
+            showMessage('Thank you for your interest! We\'ll be in touch within 24 hours to discuss partnership opportunities.', 'success');
+
+            // Reset form
+            contactForm.reset();
+
+            // Scroll to message
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = 'form-message ' + type + ' show';
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    formMessage.classList.remove('show');
+                }, 10000);
+            }
+        }
+
+        // ========================================
+        // MOBILE MENU TOGGLE (Optional Enhancement)
+        // ========================================
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+    </script>
+
+</body>
+</html>
