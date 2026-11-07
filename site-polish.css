@@ -1,0 +1,130 @@
+/* Keep page content in place instead of animating it into view on scroll. */
+[data-w-id] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.hero-wrapper {
+  background-color: #f6f5f2;
+  background-image: none;
+}
+
+.hero-spray-icon {
+  display: none;
+}
+
+.header1_image {
+  filter: drop-shadow(0 18px 24px #0f17291f);
+}
+
+.button {
+  color: #fff;
+  background-color: #172033;
+  background-image: none;
+  border: 1px solid #172033;
+  border-radius: 0.375rem;
+  box-shadow: none;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.button:hover {
+  color: #fff;
+  background-color: #303b52;
+  border-color: #303b52;
+  box-shadow: none;
+  transform: none;
+}
+
+.button.is-secondary {
+  color: #172033;
+  background-color: transparent;
+  background-image: none;
+  border-color: #a9abb0;
+}
+
+.button.is-secondary:hover {
+  color: #172033;
+  background-color: #ebe9e4;
+  border-color: #a9abb0;
+}
+
+.section_layout41 {
+  background-color: #111a2b;
+  background-image: none;
+}
+
+.text-gradient-secondary {
+  color: #63566b;
+  background-image: none;
+  background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+}
+
+.testimonial21_component {
+  display: block;
+  width: 100%;
+}
+
+.testimonial21_loop-trigger {
+  display: grid;
+  width: 100% !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 0.75rem;
+  transform: none !important;
+}
+
+.testimonial21_loop-trigger:nth-of-type(2) {
+  display: none;
+}
+
+.testimonial21_card,
+.testimonial21_card.green,
+.testimonial21_card.orange,
+.testimonial21_card.purple {
+  width: auto;
+  min-width: 0;
+  align-items: flex-start;
+  background-color: #f5f4f0;
+  background-image: none;
+  border-color: #e2e0da;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  white-space: normal;
+  will-change: auto !important;
+}
+
+.testimonial21_card:last-child {
+  grid-column: 2;
+}
+
+@media screen and (max-width: 991px) {
+  .testimonial21_loop-trigger {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .testimonial21_card:last-child {
+    grid-column: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .testimonial21_loop-trigger {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
